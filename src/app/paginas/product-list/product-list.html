@@ -1,0 +1,27 @@
+<h1>Catálogo</h1>
+
+<a routerLink="/product/create">Crear producto</a>
+
+<div class="product-list">
+
+  <div class="product-card" *ngFor="let p of products">
+
+    <h3>{{ p.name }}</h3>
+
+    <p>{{ p.description }}</p>
+
+    <p class="price">
+      {{ p.price }} €
+    </p>
+
+    <p>
+      Stock: {{ p.stock }}
+    </p>
+
+    <div class="actions">
+      <a [routerLink]="['/product', p.id]">Ver detalle</a>
+    </div>
+
+  </div>
+
+</div>

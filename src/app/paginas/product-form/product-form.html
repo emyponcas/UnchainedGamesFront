@@ -1,0 +1,60 @@
+<a routerLink="/">&larr; Volver al catálogo</a>
+
+<h1>Crear producto</h1>
+
+<form (ngSubmit)="onSubmit()">
+
+  <label>
+    Nombre:
+    <input type="text" [(ngModel)]="product.name" name="name" required>
+  </label>
+  <br>
+
+  <label>
+    Descripción:
+    <textarea [(ngModel)]="product.description" name="description"></textarea>
+  </label>
+  <br>
+
+  <label>
+    Precio:
+    <input type="number" [(ngModel)]="product.price" name="price" step="0.01" required>
+  </label>
+  <br>
+
+  <label>
+    Stock:
+    <input type="number" [(ngModel)]="product.stock" name="stock" required>
+  </label>
+  <br>
+
+  <label>
+    Edad recomendada:
+    <input type="text" [(ngModel)]="product.recommendedAge" name="recommendedAge">
+  </label>
+  <br>
+
+  <label>
+    Jugadores mínimos:
+    <input type="number" [(ngModel)]="product.playerMin" name="playerMin">
+  </label>
+  <br>
+
+  <label>
+    Jugadores máximos:
+    <input type="number" [(ngModel)]="product.playerMax" name="playerMax">
+  </label>
+  <br>
+
+  <label>
+    Duración (minutos):
+    <input type="number" [(ngModel)]="product.duration" name="duration" step="5">
+  </label>
+  <br><br>
+
+  <button type="submit">Guardar</button>
+  <button type="button" (click)="volver()">Cancelar</button>
+
+</form>
+
+<p *ngIf="mensaje">{{ mensaje }}</p>

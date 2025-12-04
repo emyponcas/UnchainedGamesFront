@@ -1,0 +1,20 @@
+<a routerLink="/">&larr; Volver al catálogo</a>
+
+<div *ngIf="product as p">
+
+  <h1>{{ p.name }}</h1>
+
+  <p>{{ p.description }}</p>
+
+  <p class="price">
+    Precio: {{ p.price }} €
+  </p>
+
+  <ul>
+    <li>Stock: {{ p.stock }}</li>
+    <li>Jugadores: {{ p.playerMin }} - {{ p.playerMax }}</li>
+    <li>Duración: {{ p.duration }} min</li>
+    <li>Edad recomendada: {{ p.recommendedAge }}</li>
+  </ul>
+
+</div>
