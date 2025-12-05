@@ -20,6 +20,25 @@
     [(ngModel)]="product.description"
   ></textarea>
 
+  <!-- IMAGEN DESDE ARCHIVO -->
+  <label for="pictureFile">Imagen del producto</label>
+  <input
+    id="pictureFile"
+    type="file"
+    (change)="onFileSelected($event)"
+    accept="image/*"
+  />
+
+  <!-- VISTA PREVIA DE IMAGEN ACTUAL -->
+  <div *ngIf="product.picture" style="margin: 10px 0;">
+    <p>Imagen actual:</p>
+    <img
+      [src]="product.picture"
+      [alt]="product.name"
+      style="max-width: 200px; border-radius: 8px;"
+    />
+  </div>
+
   <!-- PRECIO -->
   <label for="price">Precio (€)</label>
   <input
@@ -77,15 +96,6 @@
     type="number"
     [(ngModel)]="product.duration"
     min="0"
-  />
-
-  <!-- IMAGEN -->
-  <label for="picture">URL de la imagen</label>
-  <input
-    id="picture"
-    name="picture"
-    type="text"
-    [(ngModel)]="product.picture"
   />
 
   <!-- TAMAÑO CAJA -->

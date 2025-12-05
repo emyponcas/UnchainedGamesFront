@@ -33,6 +33,9 @@ export class ProductFormComponent implements OnInit {
   isEditMode: boolean = false;
   productId?: number;
 
+  // 👇 NUEVO: archivo seleccionado
+  selectedFile?: File;
+
   constructor(
     private productService: ProductService,
     private router: Router,
@@ -41,7 +44,6 @@ export class ProductFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Miramos si la ruta tiene :id → modo edición
     this.route.paramMap.subscribe(params => {
       const idParam = params.get('id');
 
@@ -68,7 +70,7 @@ export class ProductFormComponent implements OnInit {
           playerMin: data.playerMin,
           playerMax: data.playerMax,
           duration: data.duration,
-          picture: data.picture,
+          picture: data.picture, // para vista previa
           boxSize: data.boxSize,
           difficulty: data.difficulty
         };
@@ -82,15 +84,42 @@ export class ProductFormComponent implements OnInit {
     });
   }
 
+  // 👇 NUEVO: cuando el usuario elige un archivo
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.selectedFile = input.files[0];
+      // Si quisieras resetear el mensaje:
+      // this.mensaje = '';
+    }
+  }
+
   onSubmit(): void {
 
     if (this.isEditMode && this.productId != null) {
-      // 🔁 ACTUALIZAR
+      // 🔁 ACTUALIZAR DATOS
       this.productService.update(this.productId, this.product).subscribe({
         next: () => {
-          this.mensaje = 'Producto actualizado correctamente';
-          this.cdr.detectChanges();
-          // this.router.navigate(['/']); // si quieres volver al catálogo
+
+          // Ahora, si hay una imagen seleccionada, la subimos
+          if (this.selectedFile) {
+            this.productService.uploadProductPicture(this.productId!, this.selectedFile)
+              .subscribe({
+                next: () => {
+                  this.mensaje = 'Producto actualizado correctamente (con imagen)';
+                  this.cdr.detectChanges();
+                },
+                error: (err) => {
+                  console.error('Error al subir la imagen', err);
+                  this.mensaje = 'Producto actualizado, pero error al subir la imagen';
+                  this.cdr.detectChanges();
+                }
+              });
+          } else {
+            this.mensaje = 'Producto actualizado correctamente';
+            this.cdr.detectChanges();
+          }
+
         },
         error: (err) => {
           console.error('Error al actualizar producto', err);
@@ -99,12 +128,11 @@ export class ProductFormComponent implements OnInit {
         }
       });
     } else {
-      // 🆕 CREAR
+      // 🆕 CREAR (de momento sin imagen por archivo)
       this.productService.create(this.product).subscribe({
         next: () => {
           this.mensaje = 'Producto creado correctamente';
           this.cdr.detectChanges();
-          // this.router.navigate(['/']);
         },
         error: (err) => {
           console.error('Error al crear producto', err);

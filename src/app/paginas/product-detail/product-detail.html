@@ -1,20 +1,85 @@
-<a routerLink="/">&larr; Volver al catálogo</a>
+<a routerLink="/" class="back-link">&larr; Volver al catálogo</a>
 
-<div *ngIf="product as p">
+<div *ngIf="product as p" class="detail-page">
 
-  <h1>{{ p.name }}</h1>
+  <div class="detail-card">
 
-  <p>{{ p.description }}</p>
+    <!-- COLUMNA IZQUIERDA: IMAGEN -->
+    <div class="detail-image-panel">
+      <div class="detail-image-wrapper" *ngIf="p.picture; else noImage">
+        <img
+          [src]="p.picture"
+          [alt]="p.name"
+          class="detail-image"
+        />
+      </div>
 
-  <p class="price">
-    Precio: {{ p.price }} €
-  </p>
+      <ng-template #noImage>
+        <div class="detail-image-placeholder">
+          <span>Sin imagen</span>
+        </div>
+      </ng-template>
+    </div>
 
-  <ul>
-    <li>Stock: {{ p.stock }}</li>
-    <li>Jugadores: {{ p.playerMin }} - {{ p.playerMax }}</li>
-    <li>Duración: {{ p.duration }} min</li>
-    <li>Edad recomendada: {{ p.recommendedAge }}</li>
-  </ul>
+    <!-- COLUMNA DERECHA: INFO -->
+    <div class="detail-info-panel">
+
+      <h1 class="product-title">{{ p.name }}</h1>
+
+      <p class="product-description">
+        {{ p.description || 'Este producto todavía no tiene descripción detallada.' }}
+      </p>
+
+      <p class="price">
+        {{ p.price }} €
+      </p>
+
+      <div class="meta-grid">
+        <div class="meta-item">
+          <span class="meta-label">Stock</span>
+          <span class="meta-value">{{ p.stock }}</span>
+        </div>
+
+        <div class="meta-item">
+          <span class="meta-label">Jugadores</span>
+          <span class="meta-value">{{ p.playerMin }} - {{ p.playerMax }}</span>
+        </div>
+
+        <div class="meta-item">
+          <span class="meta-label">Duración</span>
+          <span class="meta-value">{{ p.duration }} min</span>
+        </div>
+
+        <div class="meta-item">
+          <span class="meta-label">Edad recomendada</span>
+          <span class="meta-value">{{ p.recommendedAge }}</span>
+        </div>
+
+        <div class="meta-item">
+          <span class="meta-label">Tamaño de la caja</span>
+          <span class="meta-value">{{ p.boxSize || 'N/D' }}</span>
+        </div>
+
+        <div class="meta-item">
+          <span class="meta-label">Dificultad</span>
+          <span class="meta-value">{{ p.difficulty || 'N/D' }}</span>
+        </div>
+      </div>
+
+      <!-- Idiomas (si los tienes cargados en el producto) -->
+      <div class="languages-block" *ngIf="p.languages?.length">
+        <span class="meta-label">Idiomas</span>
+        <div class="language-chips">
+          <span
+            class="language-chip"
+            *ngFor="let lang of p.languages"
+          >
+            {{ lang.name || lang }}
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </div>
 
 </div>

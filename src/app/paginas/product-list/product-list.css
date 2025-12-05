@@ -56,6 +56,14 @@
   color: #2f7c4c;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-create:hover {
+  background-color: #2f7c4c;
+  color: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
 }
 
 /* BARRA DE FILTROS */
@@ -93,6 +101,7 @@
   border: 1px solid #cccccc;
   font-size: 0.85rem;
   outline: none;
+  background-color: #fafafa;
 }
 
 .filter-group input[type="text"]:focus {
@@ -100,21 +109,52 @@
   box-shadow: 0 0 0 1px rgba(47, 124, 76, 0.2);
 }
 
-/* Idiomas en línea */
-.filter-languages {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.filter-languages label {
-  font-weight: 500;
-  font-size: 0.8rem;
-}
-
-.filter-languages input[type="checkbox"] {
+/* Idiomas en línea dentro del grupo */
+.filter-group label input[type="checkbox"] {
   margin-right: 6px;
   transform: translateY(1px);
+}
+
+/* Botones de filtros */
+.filter-actions {
+  margin-left: auto;
+  display: flex;
+  gap: 8px;
+}
+
+.btn-search,
+.btn-clear {
+  border-radius: 999px;
+  border: none;
+  padding: 6px 16px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  transition: 0.15s ease;
+}
+
+.btn-search {
+  background-color: #2f7c4c;
+  color: #ffffff;
+}
+
+.btn-search:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+
+.btn-clear {
+  background-color: #ffffff;
+  color: #555555;
+  border: 1px solid #cccccc;
+}
+
+.btn-clear:hover {
+  background-color: #f0f0f0;
 }
 
 /* GRID DE PRODUCTOS */
@@ -163,6 +203,13 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-3px);
+  border-color: #c6ddc4;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.09);
 }
 
 /* Zona de imagen */
@@ -178,7 +225,8 @@
   justify-content: center;
 }
 
-.product-image-wrapper img {
+.product-image-wrapper img,
+.product-image {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
@@ -198,6 +246,9 @@
   margin: 0;
   font-size: 0.85rem;
   color: #666666;
+  line-height: 1.4;
+  max-height: 4.2em;         /* ~3 líneas */
+  overflow: hidden;
 }
 
 /* PRECIO */
@@ -252,6 +303,7 @@
   align-items: center;
   justify-content: center;
   margin-right: 6px;
+  transition: 0.15s ease;
 }
 
 .btn-edit:hover {

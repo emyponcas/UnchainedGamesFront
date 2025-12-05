@@ -55,9 +55,14 @@
 
     <div class="product-card" *ngFor="let p of products">
 
-      <!-- Imagen del juego (opcional, tú la metes con update) -->
+      <!-- Imagen del juego -->
       <div class="product-image-wrapper">
-        <!-- <img [src]="p.imageUrl" [alt]="p.name" *ngIf="p.imageUrl"> -->
+        <img
+          *ngIf="p.picture"
+          [src]="p.picture"
+          [alt]="p.name"
+          class="product-image"
+        />
       </div>
 
       <h3 class="product-name">{{ p.name }}</h3>

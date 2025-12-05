@@ -56,4 +56,15 @@ export class ProductService {
     return this.http.get<Product[]>(`${this.apiUrl}/search`, { params });
   }
 
+  uploadProductPicture(id: number, file: File) {
+    const formData = new FormData();
+    formData.append('file', file); // 👈 nombre EXACTO "file"
+
+    return this.http.put<Product>(
+      `${this.apiUrl}/update/${id}/picture`,
+      formData
+    );
+  }
+
+
 }

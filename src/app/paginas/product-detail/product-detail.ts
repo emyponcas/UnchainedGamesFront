@@ -9,7 +9,8 @@ import { Product } from '../../models/product.model';
   selector: 'app-product-detail',
   standalone: true,
   imports: [CommonModule, RouterModule],
-  templateUrl: './product-detail.html'
+  templateUrl: './product-detail.html',
+  styleUrls: ['./product-detail.css']
 })
 export class ProductDetailComponent {
 
