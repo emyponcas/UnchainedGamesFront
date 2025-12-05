@@ -1,27 +1,103 @@
-<h1>Catálogo</h1>
+<div class="catalog-page">
 
-<a routerLink="/product/create">Crear producto</a>
-
-<div class="product-list">
-
-  <div class="product-card" *ngFor="let p of products">
-
-    <h3>{{ p.name }}</h3>
-
-    <p>{{ p.description }}</p>
-
-    <p class="price">
-      {{ p.price }} €
+  <!-- CABECERA CATÁLOGO -->
+  <header class="section-header">
+    <h1 class="page-title">Catálogo</h1>
+    <p class="page-subtitle">
+      Los favoritos de nuestra comunidad. Juegos probados y amados por miles de jugadores.
     </p>
+  </header>
 
-    <p>
-      Stock: {{ p.stock }}
-    </p>
+  <!-- BOTÓN CREAR PRODUCTO -->
+  <div class="create-wrapper">
+    <a routerLink="/product/create" class="btn-create">Crear producto</a>
+  </div>
 
-    <div class="actions">
-      <a [routerLink]="['/product', p.id]">Ver detalle</a>
+  <!-- BARRA DE BÚSQUEDA / FILTROS -->
+  <div class="catalog-filters">
+
+    <div class="filter-group">
+      <label>Buscar juego</label>
+      <input
+        type="text"
+        [(ngModel)]="searchText"
+        placeholder="Ej: Catan"
+      />
     </div>
 
+    <div class="filter-group">
+      <span>Idiomas</span>
+
+      <label *ngFor="let lang of availableLanguages">
+        <input
+          type="checkbox"
+          (change)="onLanguageChange($event, lang)"
+          [checked]="selectedLanguages.includes(lang)"
+        />
+        {{ lang }}
+      </label>
+    </div>
+
+    <div class="filter-actions">
+      <button type="button" class="btn-search" (click)="onSearchClick()">
+        Buscar
+      </button>
+
+      <button type="button" class="btn-clear" (click)="onClearFilters()">
+        Limpiar
+      </button>
+    </div>
+
+  </div>
+
+  <!-- LISTA DE PRODUCTOS -->
+  <div class="product-list">
+
+    <div class="product-card" *ngFor="let p of products">
+
+      <!-- Imagen del juego (opcional, tú la metes con update) -->
+      <div class="product-image-wrapper">
+        <!-- <img [src]="p.imageUrl" [alt]="p.name" *ngIf="p.imageUrl"> -->
+      </div>
+
+      <h3 class="product-name">{{ p.name }}</h3>
+
+      <p class="product-description">
+        {{ p.description }}
+      </p>
+
+      <p class="price">
+        {{ p.price }} €
+      </p>
+
+      <p class="stock">
+        Stock: {{ p.stock }}
+      </p>
+
+      <div class="actions">
+        <!-- Ver detalle -->
+        <a [routerLink]="['/product', p.id]" class="link-detail">
+          Ver detalle
+        </a>
+
+        <!-- Editar -->
+        <a
+          class="btn-edit"
+          [routerLink]="['/product/edit', p.id]"
+        >
+          Editar
+        </a>
+
+        <!-- Eliminar -->
+        <a
+          class="btn-delete"
+          [routerLink]="['/product/delete', p.id]"
+        >
+          Eliminar
+        </a>
+
+      </div>
+    </div>
   </div>
 
 </div>

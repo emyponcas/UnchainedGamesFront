@@ -1,0 +1,196 @@
+/* Si Montserrat ya está importada a nivel global, quita esta línea */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+:host {
+  display: block;
+  min-height: 100vh;
+  font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: #f3eee7; /* fondo crema similar al mockup */
+  color: #333333;
+}
+
+/* CONTENEDOR GENERAL */
+.catalog-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+/* CABECERAS DE SECCIÓN */
+.section-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.page-title,
+.section-title {
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #2f7c4c; /* verde principal */
+}
+
+.page-title {
+  font-size: 2.2rem;
+}
+
+.section-title {
+  font-size: 2rem;
+}
+
+.page-subtitle,
+.section-subtitle {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #7a7a7a;
+}
+
+/* BOTÓN CREAR PRODUCTO */
+.create-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.btn-create {
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid #2f7c4c;
+  background-color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: #2f7c4c;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.1s ease;
+}
+
+.btn-create:hover {
+  background-color: #2f7c4c;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.14);
+}
+
+/* GRID BASE */
+.product-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+
+/* TARJETA DE PRODUCTO */
+.product-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 18px 18px 16px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Tarjetas falsas para Nuevos Lanzamientos */
+.product-card.placeholder::before {
+  content: 'Próximamente';
+  margin: auto;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #b3b3b3;
+}
+
+/* CONTENEDOR DE IMAGEN */
+.product-image-wrapper {
+  background-color: #f7f7f4;
+  border-radius: 10px;
+  padding: 14px;
+  height: 190px;          /* alto fijo tipo mockup */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.04);
+}
+
+.product-image-wrapper img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* NOMBRE Y DESCRIPCIÓN */
+.product-name {
+  margin: 4px 0 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333333;
+}
+
+.product-description {
+  margin: 0 0 8px;
+  font-size: 0.85rem;
+  line-height: 1.3;
+  color: #666666;
+  min-height: 34px; /* mantiene altura similar entre tarjetas */
+}
+
+/* PRECIO Y STOCK */
+.price {
+  margin: 4px 0 2px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #f39c1f; /* naranja precio */
+}
+
+.stock {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #777777;
+}
+
+/* ACCIONES (VER DETALLE + EDITAR) */
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto; /* empuja acciones al fondo de la tarjeta */
+  padding-top: 12px;
+}
+
+.link-detail {
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: #2f7c4c;
+}
+
+.link-detail:hover {
+  text-decoration: underline;
+}
+
+.btn-edit {
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: none;
+  background-color: #2f7c4c;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+  transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.1s ease;
+}
+
+.btn-edit:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+
+/* SECCIÓN NUEVOS LANZAMIENTOS */
+.new-releases {
+  margin-top: 64px;
+}

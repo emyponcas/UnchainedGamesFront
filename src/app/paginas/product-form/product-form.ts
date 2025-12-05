@@ -1,7 +1,7 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
 import { ProductService } from '../../services/product';
 
@@ -11,7 +11,7 @@ import { ProductService } from '../../services/product';
   imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './product-form.html'
 })
-export class ProductFormComponent {
+export class ProductFormComponent implements OnInit {
 
   product: any = {
     name: '',
@@ -25,32 +25,94 @@ export class ProductFormComponent {
     picture: '',
     boxSize: '',
     difficulty: ''
-    // si luego quieres meter mechanicsIds, categoriesIds, languagesIds,
-    // se los añadimos aquí como arrays vacíos
   };
 
   mensaje: string = '';
 
+  // 👇 NUEVO: modo edición
+  isEditMode: boolean = false;
+  productId?: number;
+
   constructor(
     private productService: ProductService,
     private router: Router,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private route: ActivatedRoute
   ) {}
 
-  onSubmit(): void {
-    this.productService.create(this.product).subscribe({
-      next: () => {
-        this.mensaje = 'Producto creado correctamente';
+  ngOnInit(): void {
+    // Miramos si la ruta tiene :id → modo edición
+    this.route.paramMap.subscribe(params => {
+      const idParam = params.get('id');
+
+      if (idParam) {
+        this.isEditMode = true;
+        this.productId = +idParam;
+        this.cargarProducto();
+      }
+    });
+  }
+
+  cargarProducto(): void {
+    if (!this.productId) return;
+
+    this.productService.getById(this.productId).subscribe({
+      next: (data) => {
+        // Asumimos que el backend devuelve estas propiedades
+        this.product = {
+          name: data.name,
+          description: data.description,
+          price: data.price,
+          stock: data.stock,
+          recommendedAge: data.recommendedAge,
+          playerMin: data.playerMin,
+          playerMax: data.playerMax,
+          duration: data.duration,
+          picture: data.picture,
+          boxSize: data.boxSize,
+          difficulty: data.difficulty
+        };
         this.cdr.detectChanges();
-        // Si quieres volver automáticamente al catálogo:
-        // this.router.navigate(['/']);
       },
       error: (err) => {
-        console.error('Error al crear producto', err);
-        this.mensaje = 'Error al crear producto';
+        console.error('Error al cargar producto', err);
+        this.mensaje = 'Error al cargar producto';
         this.cdr.detectChanges();
       }
     });
+  }
+
+  onSubmit(): void {
+
+    if (this.isEditMode && this.productId != null) {
+      // 🔁 ACTUALIZAR
+      this.productService.update(this.productId, this.product).subscribe({
+        next: () => {
+          this.mensaje = 'Producto actualizado correctamente';
+          this.cdr.detectChanges();
+          // this.router.navigate(['/']); // si quieres volver al catálogo
+        },
+        error: (err) => {
+          console.error('Error al actualizar producto', err);
+          this.mensaje = 'Error al actualizar producto';
+          this.cdr.detectChanges();
+        }
+      });
+    } else {
+      // 🆕 CREAR
+      this.productService.create(this.product).subscribe({
+        next: () => {
+          this.mensaje = 'Producto creado correctamente';
+          this.cdr.detectChanges();
+          // this.router.navigate(['/']);
+        },
+        error: (err) => {
+          console.error('Error al crear producto', err);
+          this.mensaje = 'Error al crear producto';
+          this.cdr.detectChanges();
+        }
+      });
+    }
   }
 
   volver(): void {

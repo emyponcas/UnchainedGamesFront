@@ -1,60 +1,121 @@
-<a routerLink="/">&larr; Volver al catálogo</a>
-
-<h1>Crear producto</h1>
+<h1>{{ isEditMode ? 'Editar producto' : 'Crear producto' }}</h1>
 
 <form (ngSubmit)="onSubmit()">
 
-  <label>
-    Nombre:
-    <input type="text" [(ngModel)]="product.name" name="name" required>
-  </label>
-  <br>
+  <!-- NOMBRE -->
+  <label for="name">Nombre</label>
+  <input
+    id="name"
+    name="name"
+    type="text"
+    [(ngModel)]="product.name"
+    required
+  />
 
-  <label>
-    Descripción:
-    <textarea [(ngModel)]="product.description" name="description"></textarea>
-  </label>
-  <br>
+  <!-- DESCRIPCIÓN -->
+  <label for="description">Descripción</label>
+  <textarea
+    id="description"
+    name="description"
+    [(ngModel)]="product.description"
+  ></textarea>
 
-  <label>
-    Precio:
-    <input type="number" [(ngModel)]="product.price" name="price" step="0.01" required>
-  </label>
-  <br>
+  <!-- PRECIO -->
+  <label for="price">Precio (€)</label>
+  <input
+    id="price"
+    name="price"
+    type="number"
+    [(ngModel)]="product.price"
+    min="0"
+  />
 
-  <label>
-    Stock:
-    <input type="number" [(ngModel)]="product.stock" name="stock" required>
-  </label>
-  <br>
+  <!-- STOCK -->
+  <label for="stock">Stock</label>
+  <input
+    id="stock"
+    name="stock"
+    type="number"
+    [(ngModel)]="product.stock"
+    min="0"
+  />
 
-  <label>
-    Edad recomendada:
-    <input type="text" [(ngModel)]="product.recommendedAge" name="recommendedAge">
-  </label>
-  <br>
+  <!-- EDAD RECOMENDADA -->
+  <label for="recommendedAge">Edad recomendada</label>
+  <input
+    id="recommendedAge"
+    name="recommendedAge"
+    type="text"
+    [(ngModel)]="product.recommendedAge"
+  />
 
-  <label>
-    Jugadores mínimos:
-    <input type="number" [(ngModel)]="product.playerMin" name="playerMin">
-  </label>
-  <br>
+  <!-- JUGADORES MÍNIMO -->
+  <label for="playerMin">Jugadores mínimo</label>
+  <input
+    id="playerMin"
+    name="playerMin"
+    type="number"
+    [(ngModel)]="product.playerMin"
+    min="0"
+  />
 
-  <label>
-    Jugadores máximos:
-    <input type="number" [(ngModel)]="product.playerMax" name="playerMax">
-  </label>
-  <br>
+  <!-- JUGADORES MÁXIMO -->
+  <label for="playerMax">Jugadores máximo</label>
+  <input
+    id="playerMax"
+    name="playerMax"
+    type="number"
+    [(ngModel)]="product.playerMax"
+    min="0"
+  />
 
-  <label>
-    Duración (minutos):
-    <input type="number" [(ngModel)]="product.duration" name="duration" step="5">
-  </label>
-  <br><br>
+  <!-- DURACIÓN -->
+  <label for="duration">Duración (minutos)</label>
+  <input
+    id="duration"
+    name="duration"
+    type="number"
+    [(ngModel)]="product.duration"
+    min="0"
+  />
 
-  <button type="submit">Guardar</button>
-  <button type="button" (click)="volver()">Cancelar</button>
+  <!-- IMAGEN -->
+  <label for="picture">URL de la imagen</label>
+  <input
+    id="picture"
+    name="picture"
+    type="text"
+    [(ngModel)]="product.picture"
+  />
+
+  <!-- TAMAÑO CAJA -->
+  <label for="boxSize">Tamaño de la caja</label>
+  <input
+    id="boxSize"
+    name="boxSize"
+    type="text"
+    [(ngModel)]="product.boxSize"
+  />
+
+  <!-- DIFICULTAD -->
+  <label for="difficulty">Dificultad</label>
+  <input
+    id="difficulty"
+    name="difficulty"
+    type="text"
+    [(ngModel)]="product.difficulty"
+  />
+
+  <!-- MENSAJE -->
+  <p *ngIf="mensaje">{{ mensaje }}</p>
+
+  <!-- BOTONES -->
+  <button type="submit">
+    {{ isEditMode ? 'Actualizar producto' : 'Crear producto' }}
+  </button>
+
+  <button type="button" (click)="volver()">
+    Volver
+  </button>
 
 </form>
-
-<p *ngIf="mensaje">{{ mensaje }}</p>

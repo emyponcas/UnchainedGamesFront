@@ -1,0 +1,283 @@
+/* Montserrat */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+/* CONTENEDOR GENERAL */
+:host {
+  display: block;
+  font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: #f5f1e7;  /* crema */
+  padding: 32px 16px 48px;
+  color: #333333;
+}
+
+.catalog-page {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* CABECERA */
+.section-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.page-title {
+  margin: 0 0 8px;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #2f7c4c;
+}
+
+.page-subtitle {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #666666;
+}
+
+/* BOTÓN CREAR */
+.create-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+}
+
+.btn-create {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: 1px solid #2f7c4c;
+  background-color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: #2f7c4c;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+}
+
+/* BARRA DE FILTROS */
+.catalog-filters {
+  background-color: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e3e3e3;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.06);
+
+  padding: 14px 18px;
+  margin-bottom: 20px;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 24px;
+  align-items: flex-end;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.filter-group label,
+.filter-group span {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #444444;
+}
+
+.filter-group input[type="text"] {
+  padding: 6px 10px;
+  border-radius: 10px;
+  border: 1px solid #cccccc;
+  font-size: 0.85rem;
+  outline: none;
+}
+
+.filter-group input[type="text"]:focus {
+  border-color: #2f7c4c;
+  box-shadow: 0 0 0 1px rgba(47, 124, 76, 0.2);
+}
+
+/* Idiomas en línea */
+.filter-languages {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.filter-languages label {
+  font-weight: 500;
+  font-size: 0.8rem;
+}
+
+.filter-languages input[type="checkbox"] {
+  margin-right: 6px;
+  transform: translateY(1px);
+}
+
+/* GRID DE PRODUCTOS */
+.product-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+/* Móvil padding lateral un pelín menor */
+@media (max-width: 639px) {
+  :host {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+/* Tablet: 2 columnas */
+@media (min-width: 640px) {
+  .product-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Portátil: 3 columnas */
+@media (min-width: 900px) {
+  .product-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Escritorio: 4 columnas */
+@media (min-width: 1200px) {
+  .product-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* TARJETA DEL PRODUCTO */
+.product-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 14px 14px 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.07);
+  border: 1px solid #e3e3e3;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Zona de imagen */
+.product-image-wrapper {
+  background-color: #f8f8f5;
+  border-radius: 10px;
+  border: 1px solid #d7e7d4;
+  padding: 12px;
+  margin-bottom: 10px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-image-wrapper img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* NOMBRE DEL JUEGO */
+.product-name {
+  margin: 4px 0 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #222222;
+}
+
+/* DESCRIPCIÓN */
+.product-description {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #666666;
+}
+
+/* PRECIO */
+.price {
+  margin-top: 8px;
+  margin-bottom: 4px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #f39c1f;
+}
+
+/* STOCK */
+.stock {
+  font-size: 0.8rem;
+  color: #888888;
+}
+
+/* ACCIONES (ver / editar / eliminar) */
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 10px;
+}
+
+/* Ver detalle */
+.link-detail {
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: #2f7c4c;
+}
+
+.link-detail:hover {
+  text-decoration: underline;
+}
+
+/* Botón Editar */
+.btn-edit {
+  padding: 6px 16px;
+  border-radius: 999px;
+  border: none;
+  background-color: #2f7c4c;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #ffffff !important;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.18);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 6px;
+}
+
+.btn-edit:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+
+/* Botón Eliminar */
+.btn-delete {
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: none;
+  background-color: #c0392b;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 8px rgba(0,0,0,.15);
+  transition: 0.15s ease;
+}
+
+.btn-delete:hover {
+  background-color: #e74c3c;
+  transform: translateY(-1px);
+}

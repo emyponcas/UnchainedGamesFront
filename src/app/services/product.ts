@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
 import { Product } from '../models/product.model';
 
 @Injectable({
@@ -13,24 +12,48 @@ export class ProductService {
 
   constructor(private http: HttpClient) {}
 
+  // 🔹 LISTAR TODOS
   getAll(): Observable<Product[]> {
+    // Si tu endpoint es /product/all → descomenta la línea correcta
+    // return this.http.get<Product[]>(`${this.apiUrl}/all`);
     return this.http.get<Product[]>(`${this.apiUrl}/all`);
   }
 
+  // 🔹 OBTENER UNO POR ID
   getById(id: number): Observable<Product> {
     return this.http.get<Product>(`${this.apiUrl}/${id}`);
   }
 
-  create(product: any) {
-    return this.http.post<void>(`${this.apiUrl}/create`, product);
+  // 🔹 CREAR
+  create(product: Product): Observable<Product> {
+    return this.http.post<Product>(`${this.apiUrl}/create`, product);
   }
 
-  update(id: number, product: any) {
-    return this.http.put<void>(`${this.apiUrl}/update/${id}`, product);
+  // 🔹 ACTUALIZAR
+  update(id: number, product: Product): Observable<Product> {
+    return this.http.put<Product>(`${this.apiUrl}/update/${id}`, product);
   }
 
-  delete(id: number) {
+  // 🔹 BORRAR (si lo usas)
+  delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+
+  // 🔍 BUSCADOR
+  search(name?: string, languages?: string[]) {
+    let params = new HttpParams();
+
+    if (name && name.trim() !== '') {
+      params = params.set('name', name.trim());
+    }
+
+    if (languages && languages.length) {
+      languages.forEach(lang => {
+        params = params.append('languages', lang);
+      });
+    }
+
+    return this.http.get<Product[]>(`${this.apiUrl}/search`, { params });
   }
 
 }
