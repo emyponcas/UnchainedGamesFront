@@ -6,7 +6,7 @@
   display: block;
   font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   background-color: #f5f1e7;  /* crema */
-  padding: 32px 16px 48px;
+  padding: 32px 24px 48px;    /* 👈 mismo lateral que el navbar (24px) */
   color: #333333;
 }
 
@@ -157,39 +157,18 @@
   background-color: #f0f0f0;
 }
 
-/* GRID DE PRODUCTOS */
+/* GRID DE PRODUCTOS: responsive fluido */
 .product-list {
   display: grid;
-  grid-template-columns: 1fr;
   gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
 }
 
-/* Móvil padding lateral un pelín menor */
+/* Móvil: un pelín menos de padding lateral */
 @media (max-width: 639px) {
   :host {
-    padding-left: 12px;
-    padding-right: 12px;
-  }
-}
-
-/* Tablet: 2 columnas */
-@media (min-width: 640px) {
-  .product-list {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* Portátil: 3 columnas */
-@media (min-width: 900px) {
-  .product-list {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* Escritorio: 4 columnas */
-@media (min-width: 1200px) {
-  .product-list {
-    grid-template-columns: repeat(4, 1fr);
+    padding-left: 16px;
+    padding-right: 16px;
   }
 }
 

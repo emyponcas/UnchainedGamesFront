@@ -1,0 +1,213 @@
+/* Montserrat */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+:host {
+  display: block;
+  font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: #f5f1e7;  /* crema */
+  min-height: 100vh;
+  padding: 32px 16px 48px;
+  color: #333333;
+}
+
+.form-page {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* CABECERA */
+.form-header {
+  margin-bottom: 18px;
+}
+
+.form-title {
+  margin: 0 0 6px;
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #2f7c4c;
+}
+
+.form-subtitle {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #666666;
+}
+
+/* TARJETA DEL FORMULARIO */
+.product-form {
+  background-color: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #e3e3e3;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  padding: 20px 18px 18px;
+
+  display: grid;
+  grid-template-columns: 1.2fr 1.1fr;
+  gap: 20px;
+}
+
+/* Móvil: una sola columna */
+@media (max-width: 768px) {
+  .product-form {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-column {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* CAMPOS */
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.field-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #444444;
+}
+
+.field-input,
+.field-textarea {
+  padding: 7px 10px;
+  border-radius: 10px;
+  border: 1px solid #cccccc;
+  font-size: 0.9rem;
+  outline: none;
+  background-color: #fafafa;
+}
+
+.field-textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.field-input:focus,
+.field-textarea:focus {
+  border-color: #2f7c4c;
+  box-shadow: 0 0 0 1px rgba(47, 124, 76, 0.18);
+}
+
+/* INPUT FILE */
+.field-input-file {
+  font-size: 0.85rem;
+}
+
+.field-helper {
+  font-size: 0.75rem;
+  color: #888888;
+}
+
+/* VISTA PREVIA IMAGEN */
+.image-preview {
+  margin-top: 6px;
+}
+
+.image-preview-label {
+  margin: 0 0 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #444444;
+}
+
+.image-preview-box {
+  background-color: #f8f8f5;
+  border-radius: 10px;
+  border: 1px solid #d7e7d4;
+  padding: 10px;
+  width: 210px;
+  height: 210px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-preview-box img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* FOOTER DEL FORMULARIO */
+.form-footer {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.form-message {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #2f7c4c;
+}
+
+/* BOTONES */
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.btn-primary,
+.btn-secondary {
+  border-radius: 999px;
+  border: none;
+  padding: 8px 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 8px rgba(0,0,0,.12);
+  transition: 0.15s ease;
+}
+
+/* Botón principal */
+.btn-primary {
+  background-color: #2f7c4c;
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+
+/* Botón secundario */
+.btn-secondary {
+  background-color: #ffffff;
+  color: #555555;
+  border: 1px solid #cccccc;
+}
+
+.btn-secondary:hover {
+  background-color: #f0f0f0;
+  transform: translateY(-1px);
+}
+
+/* Ajustes pequeños para móvil */
+@media (max-width: 480px) {
+  :host {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .product-form {
+    padding: 16px 14px;
+  }
+
+  .image-preview-box {
+    width: 180px;
+    height: 180px;
+  }
+}

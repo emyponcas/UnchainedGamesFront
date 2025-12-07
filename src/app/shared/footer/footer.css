@@ -1,0 +1,164 @@
+/* Montserrat */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+:host {
+  display: block;
+}
+
+.ug-footer {
+  background-color: #123b2a; /* mismo verde que navbar */
+  color: #f5f1e7;
+  padding: 28px 16px 16px;
+}
+
+.ug-footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* COLUMNAS PRINCIPALES */
+.ug-footer-columns {
+  display: grid;
+  grid-template-columns: 1.6fr 1.4fr 1.4fr 1fr;
+  gap: 24px;
+  align-items: flex-start;
+  border-top: 3px solid #f3b021; /* línea amarilla superior */
+  padding-top: 18px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .ug-footer-columns {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer-col-account {
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 600px) {
+  .ug-footer-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-col-account {
+    flex-direction: column;
+  }
+
+  .footer-title-right {
+    text-align: left;
+  }
+}
+
+/* TITULOS */
+.footer-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin: 0 0 10px;
+  color: #f3b021;
+}
+
+/* LISTAS TEXTO */
+.footer-list,
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.8rem;
+}
+
+.footer-list li,
+.footer-links li {
+  margin-bottom: 6px;
+}
+
+/* Lista con iconos (info tienda) */
+.footer-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.footer-icon {
+  width: 18px;
+  display: inline-flex;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+.footer-icon i {
+  font-size: 0.8rem;
+}
+
+/* Links */
+.footer-links a {
+  color: #f5f1e7;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+/* Columna de cuenta con divisor */
+.footer-col-account {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.footer-divider {
+  width: 2px;
+  background-color: #f3b021;
+  align-self: stretch;
+}
+
+/* REDES SOCIALES */
+.footer-social {
+  text-align: right;
+}
+
+.footer-title-right {
+  text-align: right;
+}
+
+.social-icons {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 6px;
+}
+
+.social-icons a {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background-color: #f3b021;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #123b2a;
+  text-decoration: none;
+  box-shadow: 0 3px 8px rgba(0,0,0,.3);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+
+.social-icons a:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0,0,0,.4);
+}
+
+.social-icons i {
+  font-size: 0.9rem;
+}
+
+/* COPYRIGHT */
+.ug-footer-bottom {
+  margin-top: 18px;
+  font-size: 0.75rem;
+  color: #d2cfbf;
+}

@@ -1,131 +1,192 @@
-<h1>{{ isEditMode ? 'Editar producto' : 'Crear producto' }}</h1>
+<div class="form-page">
 
-<form (ngSubmit)="onSubmit()">
-
-  <!-- NOMBRE -->
-  <label for="name">Nombre</label>
-  <input
-    id="name"
-    name="name"
-    type="text"
-    [(ngModel)]="product.name"
-    required
-  />
-
-  <!-- DESCRIPCIÓN -->
-  <label for="description">Descripción</label>
-  <textarea
-    id="description"
-    name="description"
-    [(ngModel)]="product.description"
-  ></textarea>
-
-  <!-- IMAGEN DESDE ARCHIVO -->
-  <label for="pictureFile">Imagen del producto</label>
-  <input
-    id="pictureFile"
-    type="file"
-    (change)="onFileSelected($event)"
-    accept="image/*"
-  />
-
-  <!-- VISTA PREVIA DE IMAGEN ACTUAL -->
-  <div *ngIf="product.picture" style="margin: 10px 0;">
-    <p>Imagen actual:</p>
-    <img
-      [src]="product.picture"
-      [alt]="product.name"
-      style="max-width: 200px; border-radius: 8px;"
-    />
+  <div class="form-header">
+    <h1 class="form-title">
+      {{ isEditMode ? 'Editar producto' : 'Crear producto' }}
+    </h1>
+    <p class="form-subtitle">
+      Define todos los detalles del juego para que luzca perfecto en el catálogo.
+    </p>
   </div>
 
-  <!-- PRECIO -->
-  <label for="price">Precio (€)</label>
-  <input
-    id="price"
-    name="price"
-    type="number"
-    [(ngModel)]="product.price"
-    min="0"
-  />
+  <form class="product-form" (ngSubmit)="onSubmit()">
 
-  <!-- STOCK -->
-  <label for="stock">Stock</label>
-  <input
-    id="stock"
-    name="stock"
-    type="number"
-    [(ngModel)]="product.stock"
-    min="0"
-  />
+    <!-- COLUMNA IZQUIERDA: CAMPOS PRINCIPALES -->
+    <div class="form-column">
 
-  <!-- EDAD RECOMENDADA -->
-  <label for="recommendedAge">Edad recomendada</label>
-  <input
-    id="recommendedAge"
-    name="recommendedAge"
-    type="text"
-    [(ngModel)]="product.recommendedAge"
-  />
+      <!-- NOMBRE -->
+      <div class="field-group">
+        <label for="name" class="field-label">Nombre</label>
+        <input
+          id="name"
+          name="name"
+          type="text"
+          class="field-input"
+          [(ngModel)]="product.name"
+          required
+        />
+      </div>
 
-  <!-- JUGADORES MÍNIMO -->
-  <label for="playerMin">Jugadores mínimo</label>
-  <input
-    id="playerMin"
-    name="playerMin"
-    type="number"
-    [(ngModel)]="product.playerMin"
-    min="0"
-  />
+      <!-- DESCRIPCIÓN -->
+      <div class="field-group">
+        <label for="description" class="field-label">Descripción</label>
+        <textarea
+          id="description"
+          name="description"
+          class="field-textarea"
+          [(ngModel)]="product.description"
+          rows="4"
+        ></textarea>
+      </div>
 
-  <!-- JUGADORES MÁXIMO -->
-  <label for="playerMax">Jugadores máximo</label>
-  <input
-    id="playerMax"
-    name="playerMax"
-    type="number"
-    [(ngModel)]="product.playerMax"
-    min="0"
-  />
+      <!-- IMAGEN DESDE ARCHIVO -->
+      <div class="field-group">
+        <label for="pictureFile" class="field-label">Imagen del producto</label>
+        <input
+          id="pictureFile"
+          type="file"
+          class="field-input-file"
+          (change)="onFileSelected($event)"
+          accept="image/*"
+        />
+        <small class="field-helper">
+          Sube una imagen desde tu ordenador. Se guardará en la nube y se usará en el catálogo.
+        </small>
+      </div>
 
-  <!-- DURACIÓN -->
-  <label for="duration">Duración (minutos)</label>
-  <input
-    id="duration"
-    name="duration"
-    type="number"
-    [(ngModel)]="product.duration"
-    min="0"
-  />
+      <!-- VISTA PREVIA DE IMAGEN ACTUAL -->
+      <div class="image-preview" *ngIf="product.picture">
+        <p class="image-preview-label">Imagen actual</p>
+        <div class="image-preview-box">
+          <img
+            [src]="product.picture"
+            [alt]="product.name"
+          />
+        </div>
+      </div>
 
-  <!-- TAMAÑO CAJA -->
-  <label for="boxSize">Tamaño de la caja</label>
-  <input
-    id="boxSize"
-    name="boxSize"
-    type="text"
-    [(ngModel)]="product.boxSize"
-  />
+    </div>
 
-  <!-- DIFICULTAD -->
-  <label for="difficulty">Dificultad</label>
-  <input
-    id="difficulty"
-    name="difficulty"
-    type="text"
-    [(ngModel)]="product.difficulty"
-  />
+    <!-- COLUMNA DERECHA: DETALLES DEL JUEGO -->
+    <div class="form-column">
 
-  <!-- MENSAJE -->
-  <p *ngIf="mensaje">{{ mensaje }}</p>
+      <!-- PRECIO -->
+      <div class="field-group">
+        <label for="price" class="field-label">Precio (€)</label>
+        <input
+          id="price"
+          name="price"
+          type="number"
+          class="field-input"
+          [(ngModel)]="product.price"
+          min="0"
+        />
+      </div>
 
-  <!-- BOTONES -->
-  <button type="submit">
-    {{ isEditMode ? 'Actualizar producto' : 'Crear producto' }}
-  </button>
+      <!-- STOCK -->
+      <div class="field-group">
+        <label for="stock" class="field-label">Stock</label>
+        <input
+          id="stock"
+          name="stock"
+          type="number"
+          class="field-input"
+          [(ngModel)]="product.stock"
+          min="0"
+        />
+      </div>
 
-  <button type="button" (click)="volver()">
-    Volver
-  </button>
+      <!-- EDAD RECOMENDADA -->
+      <div class="field-group">
+        <label for="recommendedAge" class="field-label">Edad recomendada</label>
+        <input
+          id="recommendedAge"
+          name="recommendedAge"
+          type="text"
+          class="field-input"
+          [(ngModel)]="product.recommendedAge"
+        />
+      </div>
 
-</form>
+      <!-- JUGADORES MÍNIMO -->
+      <div class="field-group">
+        <label for="playerMin" class="field-label">Jugadores mínimo</label>
+        <input
+          id="playerMin"
+          name="playerMin"
+          type="number"
+          class="field-input"
+          [(ngModel)]="product.playerMin"
+          min="0"
+        />
+      </div>
+
+      <!-- JUGADORES MÁXIMO -->
+      <div class="field-group">
+        <label for="playerMax" class="field-label">Jugadores máximo</label>
+        <input
+          id="playerMax"
+          name="playerMax"
+          type="number"
+          class="field-input"
+          [(ngModel)]="product.playerMax"
+          min="0"
+        />
+      </div>
+
+      <!-- DURACIÓN -->
+      <div class="field-group">
+        <label for="duration" class="field-label">Duración (minutos)</label>
+        <input
+          id="duration"
+          name="duration"
+          type="number"
+          class="field-input"
+          [(ngModel)]="product.duration"
+          min="0"
+        />
+      </div>
+
+      <!-- TAMAÑO CAJA -->
+      <div class="field-group">
+        <label for="boxSize" class="field-label">Tamaño de la caja</label>
+        <input
+          id="boxSize"
+          name="boxSize"
+          type="text"
+          class="field-input"
+          [(ngModel)]="product.boxSize"
+        />
+      </div>
+
+      <!-- DIFICULTAD -->
+      <div class="field-group">
+        <label for="difficulty" class="field-label">Dificultad</label>
+        <input
+          id="difficulty"
+          name="difficulty"
+          type="text"
+          class="field-input"
+          [(ngModel)]="product.difficulty"
+        />
+      </div>
+
+    </div>
+
+    <!-- MENSAJE -->
+    <div class="form-footer">
+      <p *ngIf="mensaje" class="form-message">{{ mensaje }}</p>
+
+      <div class="form-actions">
+        <button type="submit" class="btn-primary">
+          {{ isEditMode ? 'Actualizar producto' : 'Crear producto' }}
+        </button>
+
+        <button type="button" class="btn-secondary" (click)="volver()">
+          Volver
+        </button>
+      </div>
+    </div>
+
+  </form>
+</div>

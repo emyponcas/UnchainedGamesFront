@@ -1,1 +1,30 @@
-/* You can add global styles to this file, and also import other style files */
+/* 1. Que el navegador no meta márgenes raros y el body ocupe todo */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+/* 2. El área FUERA de la app (si sobra algo) que sea del mismo color que el footer */
+body {
+  background-color: #123b2a; /* mismo verde oscuro del footer */
+}
+
+/* 3. La app es una columna que ocupa al menos todo el alto de la ventana */
+app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* 4. El main se estira y empuja el footer hacia abajo */
+.app-main {
+  flex: 1 0 auto;
+}
+
+/* Opcional pero recomendable */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}

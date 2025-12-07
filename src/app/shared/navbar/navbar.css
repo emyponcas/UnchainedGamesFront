@@ -1,0 +1,138 @@
+/* Montserrat */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+:host {
+  display: block;
+}
+
+/* Barra superior */
+.ug-navbar {
+  background-color: #123b2a; /* verde oscuro tipo cabecera */
+  color: #ffffff;
+  padding: 10px 24px;
+}
+
+.ug-navbar-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* LOGO */
+.ug-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Montserrat', system-ui, sans-serif;
+}
+
+.ug-logo-mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  background-color: #c0392b; /* rojo logo */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.ug-logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.ug-logo-main {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+}
+
+.ug-logo-sub {
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+/* NAV LINKS */
+.ug-nav-links {
+  display: flex;
+  gap: 32px;
+  font-family: 'Montserrat', system-ui, sans-serif;
+}
+
+.ug-nav-links a {
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  font-weight: 500;
+  text-decoration: none;
+  color: #f5f5f5;
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.ug-nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: #f3b021; /* amarillo marca */
+  transition: width 0.18s ease;
+}
+
+.ug-nav-links a:hover::after,
+.ug-nav-links a.active::after {
+  width: 100%;
+}
+
+/* BOTÓN USUARIO */
+.ug-user-btn {
+  border: none;
+  background-color: #f3b021;
+  color: #ffffff;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.ug-user-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.ug-user-btn i {
+  font-size: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .ug-navbar-inner {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .ug-nav-links {
+    width: 100%;
+    justify-content: center;
+    gap: 16px;
+    order: 3;
+    flex-wrap: wrap;
+  }
+
+  .ug-user-btn {
+    order: 2;
+  }
+}

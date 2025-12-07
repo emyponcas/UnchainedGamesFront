@@ -1,6 +1,6 @@
-<a routerLink="/" class="back-link">&larr; Volver al catálogo</a>
-
 <div *ngIf="product as p" class="detail-page">
+
+  <a routerLink="/" class="back-link">&larr; Volver al catálogo</a>
 
   <div class="detail-card">
 
@@ -67,7 +67,7 @@
       </div>
 
       <!-- Idiomas (si los tienes cargados en el producto) -->
-      <div class="languages-block" *ngIf="p.languages?.length">
+      <div class="languages-block" *ngIf="p.languages && p.languages.length">
         <span class="meta-label">Idiomas</span>
         <div class="language-chips">
           <span

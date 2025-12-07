@@ -9,7 +9,8 @@ import { ProductService } from '../../services/product';
   selector: 'app-product-form',
   standalone: true,
   imports: [CommonModule, FormsModule, RouterModule],
-  templateUrl: './product-form.html'
+  templateUrl: './product-form.html',
+  styleUrl: './product-form.css'
 })
 export class ProductFormComponent implements OnInit {
 

@@ -26,7 +26,8 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/fontawesome-free-6.7.2-web/css/all.min.css"
             ]
           },
           "configurations": {

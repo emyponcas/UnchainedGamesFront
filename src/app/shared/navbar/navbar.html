@@ -1,0 +1,40 @@
+<header class="ug-navbar">
+  <div class="ug-navbar-inner">
+
+    <!-- LOGO -->
+    <div class="ug-logo">
+      <!-- Si tienes un logo en assets, usa <img> -->
+      <!-- <img src="assets/logo-unchained-games.svg" alt="Unchained Games" /> -->
+      <span class="ug-logo-mark">U</span>
+      <span class="ug-logo-text">
+        <span class="ug-logo-main">UNCHAINED</span>
+        <span class="ug-logo-sub">GAMES</span>
+      </span>
+    </div>
+
+    <!-- MENÚ PRINCIPAL -->
+    <nav class="ug-nav-links">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        Catálogo
+      </a>
+      <a routerLink="/featured" routerLinkActive="active">
+        Destacado
+      </a>
+      <a routerLink="/reviews" routerLinkActive="active">
+        Reseñas
+      </a>
+      <a routerLink="/contact" routerLinkActive="active">
+        Contacto
+      </a>
+    </nav>
+
+    <!-- ICONO USUARIO / PERFIL -->
+    <button class="ug-user-btn" type="button">
+      <!-- Con FontAwesome -->
+      <i class="fa-solid fa-user"></i>
+      <!-- Si no tienes FontAwesome aún, puedes dejar un texto:
+      <span>Perfil</span> -->
+    </button>
+
+  </div>
+</header>
