@@ -9,7 +9,8 @@
   </header>
 
   <!-- BOTÓN CREAR PRODUCTO -->
-  <div class="create-wrapper">
+  <div *ngIf="isAdmin"
+    class="create-wrapper">
     <a routerLink="/product/create" class="btn-create">Crear producto</a>
   </div>
 
@@ -87,6 +88,7 @@
 
         <!-- Editar -->
         <a
+          *ngIf="isAdmin"
           class="btn-edit"
           [routerLink]="['/product/edit', p.id]"
         >
@@ -95,6 +97,7 @@
 
         <!-- Eliminar -->
         <a
+          *ngIf="isAdmin"
           class="btn-delete"
           [routerLink]="['/product/delete', p.id]"
         >

@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 
 import { ProductService } from '../../services/product';
 import { Product } from '../../models/product.model';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-product-list',
@@ -32,12 +33,18 @@ export class ProductListComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private authService: AuthService  // 👈 inyectamos AuthService
   ) {}
 
   // 👉 al entrar al catálogo, cargamos TODO
   ngOnInit(): void {
     this.cargarProductos();
+  }
+
+  // ✅ PARA USAR EN EL HTML
+  get isAdmin(): boolean {
+    return this.authService.isAdmin();
   }
 
   // 📦 carga todo el catálogo sin filtros
@@ -59,7 +66,6 @@ export class ProductListComponent implements OnInit {
     const name = this.searchText.trim();
     const langs = this.selectedLanguages;
 
-    // si no hay ningún filtro, mostramos todo
     if (!name && langs.length === 0) {
       this.cargarProductos();
       return;
@@ -76,7 +82,6 @@ export class ProductListComponent implements OnInit {
   }
 
   // cuando marcas/desmarcas un idioma, solo actualiza el array
-  // (la búsqueda se lanza al pulsar el botón)
   onLanguageChange(event: Event, lang: string): void {
     const checked = (event.target as HTMLInputElement).checked;
 
