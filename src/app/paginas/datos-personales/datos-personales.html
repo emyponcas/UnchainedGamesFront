@@ -1,0 +1,71 @@
+<div id="menu">
+
+  <div id="titulo">
+    <div>
+      <h1>Datos Personales</h1>
+    </div>
+  </div>
+
+  <div id="datosPersonales">
+    <div id="datos">
+
+      <div id="nya">
+        <div>
+          <span>Nombre y apellidos: </span>
+        </div>
+        <div>
+          <input type="text" name="NombreApellidos" id="NombreApellidos">
+        </div>
+      </div>
+
+      <div id="correo">
+        <div>
+          <span>Correo electrónico: </span>
+        </div>
+        <div>
+          <input type="text" name="CorreoElectronico" id="CorreoElectronico">
+        </div>
+      </div>
+
+      <div id="telf">
+        <div>
+          <span>Teléfono: </span>
+        </div>
+        <div>
+          <input type="text" name="Telefono" id="Telefono">
+        </div>
+      </div>
+
+      <div id="direccion">
+        <div>
+         <span>Dirección: </span>
+        </div>
+        <div>
+         <input type="text" name="direccion" id="Direccion">
+        </div>
+      </div>
+
+      <div id="cont">
+        <div>
+          <span>Contraseña: </span>
+        </div>
+        <div>
+          <button (click)="inputPassword = !inputPassword" id="passw">Cambiar contraseña</button>
+        </div>
+        <div *ngIf="inputPassword">
+          <input type="password" name="password" id="Contraseña" />
+        </div>
+      </div>
+
+    </div>
+
+    <div id= "guardar">
+      <div>
+        <button id="guardarCambios" (click)="guardarCambios()">Guardar cambios</button>
+      </div>
+   </div>
+
+
+  </div>
+
+</div>

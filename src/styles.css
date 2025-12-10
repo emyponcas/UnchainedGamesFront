@@ -20,6 +20,7 @@ app-root {
 /* 4. El main se estira y empuja el footer hacia abajo */
 .app-main {
   flex: 1 0 auto;
+  min-height: calc(100vh - 60px);
 }
 
 /* Opcional pero recomendable */
@@ -27,4 +28,12 @@ app-root {
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+app-footer {
+  height: 60px; /* La altura que tenga tu footer */
+  background-color: #f1f1f1; /* Opcional: para verlo mejor */
+  position: sticky;
+  bottom: 0;
+  width: 100%;
 }

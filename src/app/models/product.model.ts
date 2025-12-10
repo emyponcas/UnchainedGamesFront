@@ -16,8 +16,6 @@ export interface Product {
   difficulty: string;
   description: string;
 
-  mechanics: any[];
-  categories: any[];
   languages: any[];
 
 }

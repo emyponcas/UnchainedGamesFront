@@ -17,24 +17,48 @@
       <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
         Catálogo
       </a>
-      <a routerLink="/featured" routerLinkActive="active">
-        Destacado
-      </a>
       <a routerLink="/reviews" routerLinkActive="active">
         Reseñas
       </a>
       <a routerLink="/contact" routerLinkActive="active">
         Contacto
       </a>
+      <a
+        routerLink="/register"
+        routerLinkActive="active"
+        *ngIf="!isLoggedIn"
+      >
+        Registrarse
+      </a>
     </nav>
 
     <!-- ICONO USUARIO / PERFIL -->
-    <button class="ug-user-btn" type="button">
-      <!-- Con FontAwesome -->
-      <i class="fa-solid fa-user"></i>
-      <!-- Si no tienes FontAwesome aún, puedes dejar un texto:
-      <span>Perfil</span> -->
-    </button>
+    <div class="ug-user-area">
+
+      <!-- Si NO está logueado -->
+      <button
+        *ngIf="!isLoggedIn"
+        class="ug-user-btn"
+        type="button"
+        (click)="goToLogin()"
+        title="Iniciar sesión"
+      >
+        <i class="fa-solid fa-user"></i>
+      </button>
+
+      <!-- Si está logueado -->
+      <button
+        *ngIf="isLoggedIn"
+        class="ug-user-btn logout-btn"
+        type="button"
+        (click)="logout()"
+        title="Cerrar sesión"
+      >
+        <i class="fa-solid fa-right-from-bracket"></i>
+      </button>
+
+    </div>
+
 
   </div>
 </header>

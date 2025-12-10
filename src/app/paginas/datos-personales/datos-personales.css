@@ -1,0 +1,341 @@
+#menu {
+  background-color: #f8f8f5;
+  border-radius: 10px;
+  width: 1823px;
+  padding: 0.2%;
+  height: 800px;
+  align-self: center;
+  justify-items: center;
+  color: #2f7c4c;
+  justify-self: center;
+  margin-top: 5%;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+}
+
+#titulo {
+  font-size: 170px;
+  width: 90%;
+  height: 150px;
+  padding-top: 40px;
+}
+
+#titulo h1 {
+  font-size: 30%;
+  margin-bottom: 40px;
+}
+
+#datosPersonales {
+  background-color: #e3e3e3;
+  width: 90%;
+  height: auto;
+  padding-top: 30px;
+  padding-bottom: 10px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+}
+
+#datos {
+  display: flex;
+  width: 60%;
+  flex-direction: column;
+  margin-left: 3%;
+  color: black;
+  font-size: 36px;
+}
+
+#nya, #correo, #telf, #direccion, #cont {
+  display: flex;
+  height: auto;
+  align-items: center;
+  margin-bottom: 2.5%;
+}
+
+#nya #NombreApellidos, #correo #CorreoElectronico, #telf #Telefono, #direccion #Direccion, #cont button {
+  margin-left: 8%;
+}
+
+#nya input, #correo input {
+  width: 514px;
+  height: 48px;
+  border-radius: 10px;
+  font-size: 30px;
+}
+
+#telf input, #direccion input {
+  width: 380px;
+  height: 48px;
+  border-radius: 10px;
+  font-size: 30px;
+}
+
+#cont button, #guardar button {
+  border: 1px solid #cccccc;
+  border-radius: 100px;
+  width: 260px;
+  padding: 6px 10px;
+  font-size: 20px;
+  color: #000000;
+  font-weight: bold;
+  background-color: #fafafa;
+}
+
+#cont input{
+  width: 380px;
+  height: 48px;
+  border-radius: 10px;
+  font-size: 30px;
+  margin-left: 8%;
+}
+
+#cont button:active, #guardar button:active {
+  background-color: #c8c8c8;
+}
+
+#guardar {
+  width: 35%;
+  height: 350px;
+  align-self: center;
+  justify-self: center;
+  justify-items: flex-end;
+}
+
+#guardar div {
+  margin-top: 53.4%;
+}
+
+
+/* MEDIAQUERYS */
+
+
+
+
+
+/* TABLET */
+
+
+
+
+
+@media (min-width: 611px) and (max-width: 900px) {
+
+  #menu {
+    width: 90%;
+    padding: 0.2%;
+    height: auto;
+    padding-bottom: 10%;
+    align-self: center;
+    justify-items: center;
+    color: white;
+  }
+
+  #titulo {
+    font-size: 26px;
+    height: 100px;
+  }
+
+  #titulo div {
+    justify-self: center;
+  }
+
+  #datosPersonales {
+    flex-direction: column;
+    height: auto;
+    padding-bottom: 10%;
+  }
+
+  #datos {
+    width: 90%;
+    font-size: 30px;
+  }
+
+  #nya, #correo, #telf, #direccion {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    align-items: flex-start;
+    margin-bottom: 4%;
+  }
+
+  #cont {
+    flex-wrap: wrap;
+    row-gap: 12px;
+  }
+
+  #cont button {
+    margin-left: 7%;
+  }
+
+  #cont input{
+    width: 90%;
+    height: 40px;
+    font-size: 24px;
+    margin-left: 0%;
+  }
+
+  #nya #NombreApellidos, #correo #CorreoElectronico, #telf #Telefono, #direccion #Direccion {
+    margin-left: 0%;
+  }
+
+  #nya input, #correo input {
+    width: 100%;
+    height: 40px;
+    font-size: 24px;
+  }
+
+  #telf input, #direccion input {
+    width: 100%;
+    height: 40px;
+    font-size: 24px;
+  }
+
+  #guardar {
+    width: 90%;
+    flex-direction: column;
+    border-top: #FFB703 8px solid;
+    padding-top: 6%;
+    margin-top: 6%;
+  }
+
+  #fotoPerfil {
+    flex-direction: column;
+  }
+
+  #fotoPerfil div:nth-of-type(1) {
+    width: 100%;
+    text-align: center;
+  }
+
+  #fotoPerfil div:nth-of-type(2) {
+    width: 15.3%;
+  }
+
+  #guardar {
+    justify-items: center;
+    align-items: center;
+
+  }
+
+  #guardar button {
+  }
+
+}
+
+
+@media (max-width: 611px) {
+
+    #menu {
+      width: 90%;
+      padding: 0.2%;
+      height: auto;
+      padding-bottom: 10%;
+      align-self: center;
+      justify-items: center;
+      color: white;
+    }
+
+    #titulo {
+      font-size: 100%;
+      height: 100px;
+    }
+
+    #titulo div {
+      justify-self: center;
+    }
+
+    #datosPersonales {
+      flex-direction: column;
+      height: auto;
+      padding-bottom: 10%;
+    }
+
+    #datos {
+      width: 90%;
+      font-size: 18px;
+    }
+
+    #nya, #correo, #telf, #direccion {
+      display: flex;
+      flex-direction: column;
+      height: auto;
+      align-items: flex-start;
+      margin-bottom: 4%;
+    }
+
+    #cont {
+      flex-wrap: wrap;
+      row-gap: 12px;
+    }
+
+    #cont button {
+      margin-left: 4%;
+    }
+
+  #cont button {
+    border-radius: 10px;
+    border: none;
+    width: 60%;
+    padding: 4px;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+    #cont input{
+      width: 80%;
+      height: 28px;
+      font-size: 24px;
+      margin-left: 0%;
+    }
+
+    #nya #NombreApellidos, #correo #CorreoElectronico, #telf #Telefono, #direccion #Direccion {
+      margin-left: 0%;
+    }
+
+    #nya input, #correo input {
+      width: 80%;
+      height: 28px;
+      font-size: 24px;
+    }
+
+    #telf input, #direccion input {
+      width: 80%;
+      height: 28px;
+      font-size: 24px;
+    }
+
+    #guardar {
+      width: 90%;
+      flex-direction: column;
+      border-top: #FFB703 8px solid;
+      padding-top: 6%;
+      margin-top: 6%;
+      font-size: 16px;
+    }
+
+    #fotoPerfil {
+      flex-direction: column;
+    }
+
+    #fotoPerfil div:nth-of-type(1) {
+      width: 100%;
+      text-align: center;
+    }
+
+    #fotoPerfil div:nth-of-type(1) span {
+      font-size: 20px;
+    }
+
+    #fotoPerfil div:nth-of-type(2) {
+      width: 52px;
+    }
+
+    #guardar {
+      justify-items: center;
+    }
+
+    #guardar button {
+      margin-top: 30%;
+      width: 100%;
+    }
+
+  }

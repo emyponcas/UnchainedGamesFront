@@ -1,0 +1,16 @@
+
+<div id="botonPerfil" [ngStyle]="{ 'background-color': backgroundColor }">
+  <div>
+    <img [src]="imagen"
+         [ngStyle]="{
+         'width': imagenWidth,
+         'height': imagenHeight
+       }"/>
+  </div>
+  <div>
+    <h1
+      [ngStyle]="{'font-size': fontSize}">
+      {{ texto }}
+    </h1>
+  </div>
+</div>

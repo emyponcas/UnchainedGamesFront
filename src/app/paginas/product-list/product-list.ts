@@ -1,10 +1,11 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 import { ProductService } from '../../services/product';
 import { Product } from '../../models/product.model';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-product-list',
@@ -17,7 +18,13 @@ export class ProductListComponent implements OnInit {
 
   products: Product[] = [];
 
-  // 🔍 filtros
+  MenuFvisible = false;
+
+  toggleMenu() {
+    this.MenuFvisible = !this.MenuFvisible;
+  }
+
+  // filtros
   searchText: string = '';
   selectedLanguages: string[] = [];
 
@@ -32,15 +39,18 @@ export class ProductListComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private authService: AuthService  // 👈 inyectamos AuthService
   ) {}
 
-  // 👉 al entrar al catálogo, cargamos TODO
   ngOnInit(): void {
     this.cargarProductos();
   }
 
-  // 📦 carga todo el catálogo sin filtros
+  get isAdmin(): boolean {
+    return this.authService.isAdmin();
+  }
+
   cargarProductos(): void {
     this.productService
       .getAll()
@@ -54,12 +64,10 @@ export class ProductListComponent implements OnInit {
       });
   }
 
-  // 🖱️ botón "Buscar"
   onSearchClick(): void {
     const name = this.searchText.trim();
     const langs = this.selectedLanguages;
 
-    // si no hay ningún filtro, mostramos todo
     if (!name && langs.length === 0) {
       this.cargarProductos();
       return;
@@ -76,7 +84,6 @@ export class ProductListComponent implements OnInit {
   }
 
   // cuando marcas/desmarcas un idioma, solo actualiza el array
-  // (la búsqueda se lanza al pulsar el botón)
   onLanguageChange(event: Event, lang: string): void {
     const checked = (event.target as HTMLInputElement).checked;
 
@@ -89,7 +96,7 @@ export class ProductListComponent implements OnInit {
     }
   }
 
-  // 🔄 botón "Limpiar filtros"
+  // botón "Limpiar filtros"
   onClearFilters(): void {
     this.searchText = '';
     this.selectedLanguages = [];
