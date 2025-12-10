@@ -15,12 +15,36 @@ import { Review } from '../../models/review.model';
 })
 export class ReviewComponent implements OnInit {
 
-  // Ahora trabajamos SOLO con Observable
+  // seguimos trabajando con Observable + async pipe
   reviews$!: Observable<Review[]>;
 
   constructor(private reviewService: ReviewService) {}
 
   ngOnInit(): void {
+    this.loadReviews();
+  }
+
+  private loadReviews(): void {
     this.reviews$ = this.reviewService.getMyReviews();
+  }
+
+  deleteReview(r: Review): void {
+    if (!r.id) {
+      return;
+    }
+
+    const ok = window.confirm('¿Seguro que quieres eliminar esta reseña?');
+    if (!ok) return;
+
+    this.reviewService.delete(r.id).subscribe({
+      next: () => {
+        // recargamos la lista desde el backend
+        this.loadReviews();
+      },
+      error: (err) => {
+        console.error('Error al eliminar reseña', err);
+        alert('No se ha podido eliminar la reseña.');
+      }
+    });
   }
 }

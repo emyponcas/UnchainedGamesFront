@@ -194,3 +194,20 @@
 .new-releases {
   margin-top: 64px;
 }
+
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* 👈 altura mínima = alto de la ventana */
+}
+
+/* el contenido central se estira y empuja el footer hacia abajo */
+.main-content {
+  flex: 1 0 auto;
+}
+
+/* el footer no se estira, se queda pegado abajo */
+app-footer {
+  flex-shrink: 0;
+}
+

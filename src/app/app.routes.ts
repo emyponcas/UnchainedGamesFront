@@ -7,6 +7,8 @@ import { ProductDeleteComponent } from './paginas/product-delete/product-delete'
 import { LoginComponent } from './paginas/login/login';
 import { RegisterComponent } from './paginas/register/register';
 import { ReviewComponent } from './paginas/review/review';
+import { CartComponent } from './paginas/cart/cart';
+import { OrdersComponent } from './paginas/orders/orders';
 
 export const routes: Routes = [
   { path: '', component: ProductListComponent },
@@ -14,8 +16,10 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
 
-  // 👇 pantalla "Mis reseñas"
   { path: 'reviews', component: ReviewComponent },
+  { path: 'orders', component: OrdersComponent },
+
+  { path: 'cart', component: CartComponent },
 
   { path: 'product/create', component: ProductFormComponent },
   { path: 'product/edit/:id', component: ProductFormComponent },

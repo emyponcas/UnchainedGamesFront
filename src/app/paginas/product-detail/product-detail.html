@@ -91,6 +91,22 @@
             {{ showReviewForm ? 'Cancelar reseña' : 'Reseñar este juego' }}
           </button>
 
+          <!-- Botón añadir al carrito solo logueado -->
+          <button
+            class="btn-primary"
+            *ngIf="isLoggedIn"
+            (click)="addCurrentToCart(p)"
+          >
+            <i class="fa-solid fa-cart-plus"></i>
+            Añadir al carrito
+          </button>
+
+          <!-- Aviso si no está logueado -->
+          <p class="info-login" *ngIf="!isLoggedIn">
+            Inicia sesión para añadir este juego al carrito.
+          </p>
+
+
           <p *ngIf="!isLoggedIn" class="info-login">
             Inicia sesión para poder reseñar este juego.
           </p>

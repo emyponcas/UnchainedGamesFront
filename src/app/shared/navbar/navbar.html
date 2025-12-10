@@ -1,64 +1,98 @@
-<header class="ug-navbar">
-  <div class="ug-navbar-inner">
+<header class="navbar">
+  <div class="navbar-inner">
 
-    <!-- LOGO -->
-    <div class="ug-logo">
-      <!-- Si tienes un logo en assets, usa <img> -->
-      <!-- <img src="assets/logo-unchained-games.svg" alt="Unchained Games" /> -->
-      <span class="ug-logo-mark">U</span>
-      <span class="ug-logo-text">
-        <span class="ug-logo-main">UNCHAINED</span>
-        <span class="ug-logo-sub">GAMES</span>
-      </span>
+    <!-- LOGO / MARCA -->
+    <div class="nav-left">
+      <a routerLink="/" class="brand">
+        <span class="brand-box">U</span>
+        <span class="brand-text">
+          <span class="brand-name">UNCHAINED</span>
+          <span class="brand-sub">GAMES</span>
+        </span>
+      </a>
     </div>
 
-    <!-- MENÚ PRINCIPAL -->
-    <nav class="ug-nav-links">
-      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-        Catálogo
-      </a>
-      <a routerLink="/reviews" routerLinkActive="active">
-        Reseñas
-      </a>
-      <a routerLink="/contact" routerLinkActive="active">
-        Contacto
-      </a>
+    <!-- ENLACES PRINCIPALES -->
+    <nav class="nav-center">
       <a
-        routerLink="/register"
+        routerLink="/"
         routerLinkActive="active"
-        *ngIf="!isLoggedIn"
+        [routerLinkActiveOptions]="{ exact: true }"
       >
-        Registrarse
+        CATÁLOGO
+      </a>
+
+      <a
+        routerLink="/reviews"
+        routerLinkActive="active"
+      >
+        RESEÑAS
+      </a>
+
+      <a
+        routerLink="/contacto"
+        routerLinkActive="active"
+      >
+        CONTACTO
+      </a>
+
+      <!-- Historial de pedidos solo si está logueado -->
+      <a
+        *ngIf="isLoggedIn"
+        routerLink="/orders"
+        routerLinkActive="active"
+      >
+        HISTORIAL DE PEDIDOS
       </a>
     </nav>
 
-    <!-- ICONO USUARIO / PERFIL -->
-    <div class="ug-user-area">
+    <!-- ZONA DERECHA: CARRITO + LOGIN/LOGOUT/REGISTER -->
+    <div class="nav-right">
 
-      <!-- Si NO está logueado -->
-      <button
-        *ngIf="!isLoggedIn"
-        class="ug-user-btn"
-        type="button"
-        (click)="goToLogin()"
-        title="Iniciar sesión"
+      <!-- 🛒 CARRITO SOLO SI ESTÁ LOGUEADO -->
+      <a
+        *ngIf="isLoggedIn"
+        routerLink="/cart"
+        class="cart-link"
+        aria-label="Carrito"
       >
-        <i class="fa-solid fa-user"></i>
-      </button>
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="cart-badge" *ngIf="totalItems > 0">
+          {{ totalItems }}
+        </span>
+      </a>
 
-      <!-- Si está logueado -->
+      <!-- BOTONES CUANDO NO ESTÁ LOGUEADO -->
+      <ng-container *ngIf="!isLoggedIn">
+        <button
+          class="nav-btn"
+          type="button"
+          (click)="goToLogin()"
+        >
+          <i class="fa-solid fa-right-to-bracket"></i>
+          <span>Entrar</span>
+        </button>
+
+        <button
+          class="nav-btn nav-btn-secondary"
+          type="button"
+          (click)="goToRegister()"
+        >
+          <i class="fa-solid fa-user-plus"></i>
+          <span>Registrarse</span>
+        </button>
+      </ng-container>
+
+      <!-- BOTÓN CUANDO SÍ ESTÁ LOGUEADO -->
       <button
         *ngIf="isLoggedIn"
-        class="ug-user-btn logout-btn"
+        class="nav-btn"
         type="button"
         (click)="logout()"
-        title="Cerrar sesión"
       >
         <i class="fa-solid fa-right-from-bracket"></i>
+        <span>Salir</span>
       </button>
-
     </div>
-
-
   </div>
 </header>

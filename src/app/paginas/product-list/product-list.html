@@ -86,6 +86,15 @@
           Ver detalle
         </a>
 
+        <button
+          *ngIf="isLoggedIn"
+          class="btn-edit"
+          (click)="addToCart(p)"
+        >
+          <i class="fa-solid fa-cart-plus"></i>
+        </button>
+
+
         <!-- Editar -->
         <a
           *ngIf="isAdmin"

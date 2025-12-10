@@ -1,23 +1,20 @@
-/* Montserrat, igual que en product-list */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
-/* CONTENEDOR GENERAL */
 :host {
   display: block;
   font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background-color: #f5f1e7;  /* crema */
+  background-color: #f5f1e7;
   padding: 32px 24px 48px;
   color: #333333;
 }
 
-.reviews-page {
-  max-width: 900px;
+.orders-page {
+  max-width: 1000px;
   margin: 0 auto;
 }
 
-/* CABECERA (mismo estilo que catálogo) */
+/* CABECERA */
 .section-header {
-  text-align: left;
   margin-bottom: 18px;
 }
 
@@ -35,7 +32,6 @@
   color: #666666;
 }
 
-/* RESUMEN / ESTADOS */
 .summary-text {
   font-size: 0.9rem;
   margin: 0 0 10px;
@@ -82,167 +78,168 @@
   transform: translateY(-1px);
 }
 
-/* LISTA DE RESEÑAS */
-.reviews-list {
+/* LISTA DE PEDIDOS */
+.orders-list {
   display: flex;
   flex-direction: column;
   gap: 16px;
   margin-top: 8px;
 }
 
-/* TARJETA RESEÑA */
-.review-card {
+/* TARJETA PEDIDO */
+.order-card {
   background-color: #ffffff;
   border-radius: 12px;
   border: 1px solid #e3e3e3;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.07);
-  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  padding: 12px 16px;
 }
 
-.review-card:hover {
-  transform: translateY(-3px);
-  border-color: #c6ddc4;
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.09);
-}
-
-/* CONTENIDO DE LA TARJETA */
-.card-main {
+/* CABECERA DEL PEDIDO */
+.order-header {
   display: flex;
-  gap: 16px;
-  padding: 14px 16px;
-  text-decoration: none;
-  color: inherit;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 10px;
 }
 
-/* MINIATURA DEL JUEGO */
-.game-thumb {
-  width: 80px;
-  height: 80px;
+.order-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #222222;
+}
+
+.order-date {
+  margin: 2px 0 0;
+  font-size: 0.8rem;
+  color: #777777;
+}
+
+.order-meta {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-end;
+}
+
+.order-total {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #f39c1f;
+}
+
+/* STATUS */
+.order-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.status-pending {
+  background-color: #fff7e0;
+  color: #c27c1d;
+}
+
+.status-paid {
+  background-color: #e5f6ea;
+  color: #2f7c4c;
+}
+
+.status-other {
+  background-color: #e0e4ea;
+  color: #3c4a5f;
+}
+
+/* LÍNEAS DEL PEDIDO */
+.order-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.order-line {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  padding: 6px 0;
+  border-top: 1px dashed #e0e0e0;
+}
+
+.order-line:first-child {
+  border-top: none;
+}
+
+/* Miniatura producto */
+.line-thumb {
+  width: 64px;
+  height: 64px;
   border-radius: 10px;
   background-color: #f8f8f5;
   border: 1px solid #d7e7d4;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
   overflow: hidden;
 }
 
-.game-thumb img {
+.line-thumb img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.game-placeholder {
+.line-placeholder {
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   color: #f39c1f;
 }
 
-/* INFO DEL JUEGO + RESEÑA */
-.game-info {
-  flex: 1;
+/* Info producto */
+.line-info {
   display: flex;
   flex-direction: column;
-}
-
-.game-title {
-  margin: 0 0 6px;
-  font-size: 1rem;
-  font-weight: 600;
-  color: #222222;
-}
-
-/* LÍNEA FECHA + RATING */
-.meta-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 6px 12px;
-  font-size: 0.8rem;
-  color: #777777;
-  margin-bottom: 4px;
-}
-
-/* ESTRELLAS */
-.rating {
-  display: flex;
-  align-items: center;
   gap: 2px;
 }
 
-.rating i {
-  font-size: 0.85rem;
-}
-
-.rating .filled {
-  color: #f7b500;
-}
-
-.rating-value {
-  margin-left: 4px;
+.line-name {
+  font-size: 0.9rem;
   font-weight: 600;
-  font-size: 0.8rem;
-  color: #444444;
+  color: #2f7c4c;
+  text-decoration: none;
 }
 
-/* AUTOR + COMENTARIO */
-.author {
-  margin: 4px 0;
+.line-name:hover {
+  text-decoration: underline;
+}
+
+.line-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
   font-size: 0.8rem;
   color: #555555;
 }
 
-.comment {
-  margin: 0;
+/* Total línea */
+.line-total {
   font-size: 0.9rem;
-  color: #444444;
-  line-height: 1.4;
-}
-
-.card-actions {
-  padding: 0 16px 12px;
-  display: flex;
-  justify-content: flex-end;
-}
-
-/* Botón eliminar reseña */
-.btn-review-delete {
-  border: none;
-  border-radius: 999px;
-  padding: 4px 12px;
-
-  background-color: #c0392b;
-  color: #ffffff;
-  font-size: 0.75rem;
   font-weight: 600;
-  font-family: 'Montserrat', system-ui, sans-serif;
-
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  transition: 0.15s ease;
+  text-align: right;
 }
-
-.btn-review-delete i {
-  font-size: 0.8rem;
-}
-
-.btn-review-delete:hover {
-  background-color: #e74c3c;
-  transform: translateY(-1px);
-}
-
 
 /* RESPONSIVE */
 @media (max-width: 639px) {
@@ -251,13 +248,23 @@
     padding-right: 16px;
   }
 
-  .card-main {
+  .order-line {
+    grid-template-columns: 48px minmax(0, 1fr);
+    grid-template-rows: auto auto;
+  }
+
+  .line-total {
+    grid-column: 2 / 3;
+    text-align: left;
+  }
+
+  .order-header {
     flex-direction: column;
     align-items: flex-start;
   }
 
-  .game-thumb {
-    width: 100%;
-    height: 160px;
+  .order-meta {
+    align-items: flex-start;
+    text-align: left;
   }
 }

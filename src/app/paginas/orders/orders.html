@@ -1,0 +1,103 @@
+<div class="orders-page">
+  <!-- CABECERA -->
+  <div class="section-header">
+    <h1 class="page-title">Mis pedidos</h1>
+    <p class="page-subtitle">
+      Aquí puedes ver el historial de todos los pedidos que has realizado.
+    </p>
+  </div>
+
+  <!-- CONTENIDO -->
+  <ng-container *ngIf="orders$ | async as orders; else loadingTpl">
+
+    <p class="summary-text">
+      Has realizado <strong>{{ orders.length }}</strong>
+      pedido{{ orders.length === 1 ? '' : 's' }}.
+    </p>
+
+    <!-- SI NO HAY PEDIDOS -->
+    <div *ngIf="orders.length === 0" class="empty-state">
+      <p>Aún no has hecho ningún pedido.</p>
+      <a routerLink="/" class="btn-primary-outline">
+        Ir al catálogo
+      </a>
+    </div>
+
+    <!-- LISTA DE PEDIDOS -->
+    <div *ngIf="orders.length > 0" class="orders-list">
+
+      <article class="order-card" *ngFor="let o of orders">
+        <!-- CABECERA PEDIDO -->
+        <header class="order-header">
+          <div>
+            <h2 class="order-title">
+              Pedido #{{ o.id }}
+            </h2>
+            <p class="order-date">
+              {{ o.datetime | date:'dd/MM/yyyy HH:mm' }}
+            </p>
+          </div>
+
+          <div class="order-meta">
+            <span class="order-status"
+                  [ngClass]="{
+                    'status-pending': o.status === 0,
+                    'status-paid': o.status === 1,
+                    'status-other': o.status !== 0 && o.status !== 1
+                  }">
+              <!-- Texto según status simple -->
+              {{ o.status === 0 ? 'Pendiente' :
+              o.status === 1 ? 'Confirmado' :
+                'Estado ' + o.status }}
+            </span>
+
+            <span class="order-total">
+              Total: {{ o.total | number:'1.2-2' }} €
+            </span>
+          </div>
+        </header>
+
+        <!-- LÍNAS DEL PEDIDO -->
+        <div class="order-lines">
+          <div class="order-line" *ngFor="let l of o.lineas">
+            <!-- MINIATURA PRODUCTO -->
+            <a class="line-thumb" [routerLink]="['/product', l.productId]">
+              <img
+                *ngIf="l.productPicture; else noImg"
+                [src]="l.productPicture!"
+                [alt]="l.productName"
+              />
+              <ng-template #noImg>
+                <div class="line-placeholder">
+                  {{ l.productName ? (l.productName | slice:0:1) : '?' }}
+                </div>
+              </ng-template>
+            </a>
+
+            <!-- INFO PRODUCTO -->
+            <div class="line-info">
+              <a class="line-name" [routerLink]="['/product', l.productId]">
+                {{ l.productName }}
+              </a>
+
+              <div class="line-meta">
+                <span>Cantidad: {{ l.amount }}</span>
+                <span>Precio ud: {{ l.unitPrice | number:'1.2-2' }} €</span>
+              </div>
+            </div>
+
+            <!-- TOTAL LÍNEA -->
+            <div class="line-total">
+              {{ l.lineTotal | number:'1.2-2' }} €
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </ng-container>
+
+  <!-- LOADING -->
+  <ng-template #loadingTpl>
+    <p class="loading-text">Cargando pedidos...</p>
+  </ng-template>
+</div>

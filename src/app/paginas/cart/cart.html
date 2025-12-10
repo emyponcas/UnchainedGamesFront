@@ -1,0 +1,108 @@
+<div class="cart-page">
+  <!-- CABECERA -->
+  <div class="section-header">
+    <h1 class="page-title">Carrito</h1>
+    <p class="page-subtitle">
+      Revisa tus juegos antes de confirmar el pedido.
+    </p>
+  </div>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <ng-container *ngIf="items.length > 0; else emptyTpl">
+
+    <div class="cart-layout">
+      <!-- LISTA DE ITEMS -->
+      <div class="cart-items">
+        <article class="cart-item" *ngFor="let item of items">
+          <div class="item-main">
+            <div class="item-info">
+              <h2 class="item-name">{{ item.name }}</h2>
+              <p class="item-price">
+                {{ item.price | number:'1.2-2' }} €
+              </p>
+            </div>
+
+            <div class="item-qty">
+              <button (click)="decrease(item)" class="qty-btn">
+                <i class="fa-solid fa-minus"></i>
+              </button>
+
+              <span class="qty-value">{{ item.quantity }}</span>
+
+              <button (click)="increase(item)" class="qty-btn">
+                <i class="fa-solid fa-plus"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="item-footer">
+            <span class="item-subtotal">
+              Subtotal:
+              {{ (item.price * item.quantity) | number:'1.2-2' }} €
+            </span>
+
+            <button class="remove-btn" (click)="remove(item)">
+              <i class="fa-solid fa-trash"></i>
+              Quitar
+            </button>
+          </div>
+        </article>
+      </div>
+
+      <!-- RESUMEN -->
+      <aside class="cart-summary">
+        <h2>Resumen</h2>
+        <p class="summary-line">
+          Productos: <span>{{ items.length }}</span>
+        </p>
+        <p class="summary-line">
+          Total:
+          <span>{{ totalPrice | number:'1.2-2' }} €</span>
+        </p>
+
+        <!-- ✅ Si está logueado: botón normal -->
+        <button
+          *ngIf="isLoggedIn"
+          class="btn-confirm"
+          (click)="checkout()"
+          [disabled]="isSubmitting"
+        >
+          <i class="fa-solid fa-cart-shopping"></i>
+          {{ isSubmitting ? 'Procesando...' : 'Confirmar pedido' }}
+        </button>
+
+        <!-- 🚫 Si NO está logueado: botón bloqueado + aviso -->
+        <div *ngIf="!isLoggedIn" class="login-block">
+          <button class="btn-confirm" disabled>
+            <i class="fa-solid fa-lock"></i>
+            Inicia sesión para confirmar
+          </button>
+          <p class="login-hint">
+            <a routerLink="/login">Inicia sesión</a> para poder completar tu pedido.
+          </p>
+        </div>
+
+        <button class="btn-secondary" (click)="clear()">
+          Vaciar carrito
+        </button>
+
+        <p class="msg error" *ngIf="submitError">
+          {{ submitError }}
+        </p>
+        <p class="msg success" *ngIf="submitSuccess">
+          {{ submitSuccess }}
+        </p>
+      </aside>
+    </div>
+  </ng-container>
+
+  <!-- CARRITO VACÍO -->
+  <ng-template #emptyTpl>
+    <div class="empty-state">
+      <p>Tu carrito está vacío.</p>
+      <a routerLink="/" class="btn-primary-outline">
+        Volver al catálogo
+      </a>
+    </div>
+  </ng-template>
+</div>

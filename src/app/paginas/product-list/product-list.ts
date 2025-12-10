@@ -6,6 +6,8 @@ import { FormsModule } from '@angular/forms';
 import { ProductService } from '../../services/product';
 import { Product } from '../../models/product.model';
 import { AuthService } from '../../services/auth.service';
+import { CartService } from '../../services/cart.service';
+
 
 @Component({
   selector: 'app-product-list',
@@ -34,7 +36,8 @@ export class ProductListComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private cdr: ChangeDetectorRef,
-    private authService: AuthService  // 👈 inyectamos AuthService
+    private authService: AuthService,
+    private cartService: CartService
   ) {}
 
   // 👉 al entrar al catálogo, cargamos TODO
@@ -100,4 +103,13 @@ export class ProductListComponent implements OnInit {
     this.selectedLanguages = [];
     this.cargarProductos();
   }
+
+  addToCart(p: Product): void {
+    this.cartService.addProduct(p, 1);
+  }
+
+  get isLoggedIn(): boolean {
+    return this.authService.isLoggedIn();
+  }
+
 }

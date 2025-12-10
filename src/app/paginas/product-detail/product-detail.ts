@@ -9,6 +9,7 @@ import { Product } from '../../models/product.model';
 import { AuthService } from '../../services/auth.service';
 import { ReviewService } from '../../services/review.service';
 import { Review, ReviewCreateDTO } from '../../models/review.model';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -38,7 +39,8 @@ export class ProductDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private productService: ProductService,
     private authService: AuthService,
-    private reviewService: ReviewService
+    private reviewService: ReviewService,
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
@@ -135,5 +137,10 @@ export class ProductDetailComponent implements OnInit {
           this.reviewFormError = 'No se ha podido guardar la reseña.';
         }
       });
+  }
+
+  addCurrentToCart(p: Product | null): void {
+    if (!p) return;
+    this.cartService.addProduct(p, 1);
   }
 }

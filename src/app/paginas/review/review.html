@@ -27,6 +27,7 @@
     <div *ngIf="reviews.length > 0" class="reviews-list">
       <article class="review-card" *ngFor="let r of reviews">
 
+        <!-- Tarjeta que lleva al producto -->
         <a class="card-main" [routerLink]="['/product', r.productId]">
           <!-- MINIATURA DEL JUEGO -->
           <div class="game-thumb">
@@ -74,6 +75,18 @@
             </p>
           </div>
         </a>
+
+        <!-- ACCIONES: ELIMINAR -->
+        <div class="card-actions">
+          <button
+            type="button"
+            class="btn-review-delete"
+            (click)="deleteReview(r)"
+          >
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        </div>
+
       </article>
     </div>
   </ng-container>
