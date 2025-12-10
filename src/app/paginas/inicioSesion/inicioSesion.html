@@ -1,0 +1,55 @@
+<div>
+  <div id="InicioSesion">
+    <div id="logo">
+      <img src="images/UnchLogoInic.png"/>
+    </div>
+
+    <div id="info">
+      <div>
+        <h1>Inicio de Sesión</h1>
+      </div>
+
+      <!-- Mensaje de error - manteniendo el estilo -->
+      <div *ngIf="errorMessage" style="color: #ff6b6b; text-align: center; margin-bottom: 15px; font-size: 14px;">
+        {{ errorMessage }}
+      </div>
+
+      <div>
+        <label for="correo">Correo electrónico</label>
+        <input
+          type="email"
+          id="correo"
+          placeholder="correo@gmail.com"
+          [(ngModel)]="loginData.email"
+          [disabled]="isLoading">
+      </div>
+
+      <div>
+        <label for="passw">Contraseña</label>
+        <input
+          type="password"
+          id="passw"
+          [(ngModel)]="loginData.password"
+          (keyup.enter)="onLogin()"
+          [disabled]="isLoading">
+      </div>
+
+      <div>
+        <button
+          (click)="onLogin()"
+          [disabled]="isLoading || !loginData.email || !loginData.password">
+          <span *ngIf="!isLoading">Iniciar sesión</span>
+          <span *ngIf="isLoading">Iniciando sesión...</span>
+        </button>
+      </div>
+
+      <div>
+        <p>¿Se te ha olvidado tu contraseña? <span><a>Recuperar contraseña</a></span></p>
+      </div>
+
+      <div>
+        <p>¿No tienes una cuenta? <span><a [routerLink]="['/registro']">Regístrate</a></span></p>
+      </div>
+    </div>
+  </div>
+</div>

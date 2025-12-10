@@ -1,0 +1,112 @@
+<div id="Registro">
+
+  <div id="logo">
+    <img src="images/UnchLogoInic.png" alt="Logo Unch"/>
+  </div>
+
+  <div id="info">
+    <div>
+      <h1>Registro</h1>
+    </div>
+
+    <!-- Mensajes de error/éxito -->
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+
+    <div *ngIf="successMessage" class="success-message">
+      {{ successMessage }}
+    </div>
+
+    <!-- Formulario -->
+    <div id="cont1">
+      <label for="nombre">Nombre *</label>
+      <input
+        type="text"
+        id="nombre"
+        [(ngModel)]="userData.name"
+        [disabled]="isLoading"
+        required
+      >
+    </div>
+
+    <div id="cont1">
+      <label for="nombre">Apellidos *</label>
+      <input
+        type="text"
+        id="nombre"
+        [(ngModel)]="userData.surnames"
+        placeholder="Apellidos"
+        [disabled]="isLoading"
+        required
+      >
+    </div>
+
+    <div id="cont2">
+      <label for="correo">Correo electrónico *</label>
+      <input
+        type="email"
+        id="correo"
+        [(ngModel)]="userData.email"
+        placeholder="correo@gmail.com"
+        [disabled]="isLoading"
+        required
+      >
+    </div>
+
+    <div id="cont3">
+      <div>
+        <label for="telef">Teléfono</label>
+        <input
+          type="tel"
+          id="telef"
+          [(ngModel)]="userData.phoneNumber"
+          [disabled]="isLoading"
+        >
+      </div>
+    </div>
+
+    <div id="cont4">
+      <label for="passw">Contraseña *</label>
+      <input
+        type="password"
+        id="passw"
+        [(ngModel)]="userData.password"
+        [disabled]="isLoading"
+        required
+      >
+    </div>
+
+    <div id="cont5">
+      <label for="passw2">Repetir Contraseña *</label>
+      <input
+        type="password"
+        id="passw2"
+        [(ngModel)]="userData.confirmPassword"
+        [disabled]="isLoading"
+        required
+      >
+    </div>
+
+    <div>
+      <button
+        (click)="onRegister()"
+        [disabled]="isLoading"
+      >
+        <span *ngIf="!isLoading">Registrarme</span>
+        <span *ngIf="isLoading">Registrando...</span>
+      </button>
+    </div>
+
+    <!-- Enlace a login -->
+    <div class="login-link">
+      <p>
+        ¿Ya tienes cuenta?
+        <span (click)="goToLogin()" style="cursor: pointer; color: #FFB703; text-decoration: underline;">
+          Inicia sesión aquí
+        </span>
+      </p>
+    </div>
+  </div>
+
+</div>

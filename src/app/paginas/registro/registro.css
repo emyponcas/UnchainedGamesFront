@@ -1,0 +1,133 @@
+/* CONTENEDOR PRINCIPAL */
+#Registro {
+  background-color: #1B4332;
+  width: 560px;
+  height: auto;
+  border: #B7B7B7 3px solid;
+  border-radius: 12px;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  justify-self: center;
+  padding-bottom: 25px;
+}
+
+/* LOGO */
+#logo {
+  width: 304px;
+  margin-top: 28px;
+  justify-self: center;
+}
+
+#logo img {
+  height: 127px;
+  width: 304px;
+}
+
+/* INFO */
+#info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#info > div:nth-of-type(1) {
+  height: 36px;
+}
+
+#info > div h1 {
+  font-size: 28px;
+}
+
+/* CAMPOS INDIVIDUALES */
+#cont1, #cont2, #cont4, #cont5 {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-top: 20px;
+}
+
+#cont1 label, #cont2 label, #cont4 label, #cont5 label {
+  font-size: 16px;
+}
+
+#cont1 input, #cont2 input, #cont4 input, #cont5 input {
+  width: 100%;
+  height: 48px;
+  border: #6E6E6E 2.2px solid;
+  border-radius: 10px;
+}
+
+/* TELÉFONO + DIRECCIÓN */
+#cont3 {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  text-align: left;
+  margin-top: 20px;
+}
+
+#cont3 div {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#cont3 input {
+  height: 48px;
+  border: #6E6E6E 2.2px solid;
+  border-radius: 10px;
+}
+
+/* BOTÓN */
+#info > div:last-of-type {
+  margin-top: 32px;
+}
+
+#info > div:last-of-type button {
+  background-color: #FFB703;
+  color: #1B4332;
+  width: 225px;
+  height: 42px;
+  border-radius: 8px;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+
+
+/* MEDIA QUERY - RESPONSIVE */
+@media (max-width: 600px) {
+
+  #Registro {
+    width: 80%;
+  }
+
+  #logo img {
+    height: 35%;
+    width: 55%;
+  }
+
+  #info > div h1 {
+    font-size: 24px;
+  }
+
+  #cont3 {
+    flex-direction: column;
+  }
+
+  #cont3 div {
+    width: 100%;
+    margin-top: 12px;
+  }
+
+  #info > div:last-of-type button {
+    font-size: 16px;
+    width: 175px;
+    height: 34px;
+  }
+}

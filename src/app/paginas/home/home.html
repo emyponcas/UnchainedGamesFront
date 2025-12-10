@@ -1,0 +1,71 @@
+<!-- NAVBAR -->
+<app-navbar></app-navbar>
+
+<!-- CONTENIDO PRINCIPAL -->
+<div class="home-content">
+
+  <!-- Mensaje de error si hay -->
+  <div *ngIf="errorMessage" style="text-align: center; padding: 20px; color: #ff6b6b;">
+    {{ errorMessage }}
+  </div>
+
+  <!-- Loader mientras carga -->
+  <div *ngIf="isLoading" style="text-align: center; padding: 50px;">
+    <p style="font-size: 18px; color: #1B4332;">Cargando productos...</p>
+  </div>
+
+  <!-- Contenido cuando ha cargado -->
+  <div *ngIf="!isLoading">
+
+    <!-- HERO SECTION - JUEGOS DESTACADOS -->
+    <section class="section-title">
+      <h2>Juegos Destacados</h2>
+      <p>Los mejores juegos de mesa para tu colección</p>
+    </section>
+
+    <!-- TARJETAS DE PRODUCTOS DESTACADOS -->
+    <div class="cards-container">
+      <div class="card" *ngFor="let product of featuredProducts">
+        <img [src]="product.picture" [alt]="product.name" />
+        <h3>{{ product.name }}</h3>
+        <div class="details">
+          <span>{{ product.playerMin }} - {{ product.playerMax }}</span>
+          <span>{{ product.duration }} Min</span>
+        </div>
+        <div class="price">{{ product.price | number:'1.2-2' }} €</div>
+        <button
+          (click)="addToCart(product)"
+          [ngClass]="{ 'disabled-btn': !authService.isAuthenticated() }">
+          {{ authService.isAuthenticated() ? 'Agregar al carrito' : 'Inicia sesión para comprar' }}
+        </button>
+      </div>
+    </div>
+
+    <!-- NUEVOS LANZAMIENTOS -->
+    <section class="section-title">
+      <h2>Nuevos Lanzamientos</h2>
+      <p>Las últimas novedades en juegos de mesa. Sé el primero en descubrirlos.</p>
+    </section>
+
+    <!-- TARJETAS DE NUEVOS PRODUCTOS -->
+    <div class="cards-container">
+      <div class="card" *ngFor="let product of newProducts">
+        <img [src]="product.picture" [alt]="product.name" />
+        <h3>{{ product.name }}</h3>
+        <div class="details">
+          <span>{{ product.playerMin }} - {{ product.playerMax }}</span>
+          <span>{{ product.duration }} Min</span>
+        </div>
+        <div class="price">{{ product.price | number:'1.2-2' }} €</div>
+        <button
+          (click)="addToCart(product)"
+          [ngClass]="{ 'disabled-btn': !authService.isAuthenticated() }">
+          {{ authService.isAuthenticated() ? 'Agregar al carrito' : 'Inicia sesión para comprar' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<app-footer></app-footer>

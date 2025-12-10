@@ -1,0 +1,255 @@
+/* Montserrat */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+:host {
+  display: block;
+}
+
+/* Barra superior */
+.ug-navbar {
+  background-color: #123b2a;
+  color: #ffffff;
+  padding: 10px 24px;
+}
+
+.ug-navbar-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* LOGO */
+.ug-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Montserrat', system-ui, sans-serif;
+  cursor: pointer;
+}
+
+.ug-logo-mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  background-color: #c0392b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.ug-logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.ug-logo-main {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+}
+
+.ug-logo-sub {
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+/* NAV LINKS */
+.ug-nav-links {
+  display: flex;
+  gap: 32px;
+  font-family: 'Montserrat', system-ui, sans-serif;
+}
+
+.ug-nav-links a {
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  font-weight: 500;
+  text-decoration: none;
+  color: #f5f5f5;
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.ug-nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: #f3b021;
+  transition: width 0.18s ease;
+}
+
+.ug-nav-links a:hover::after,
+.ug-nav-links a.active::after {
+  width: 100%;
+}
+
+/* BOTONES DE AUTENTICACIÓN */
+.auth-buttons {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.btn-login,
+.btn-register {
+  border: none;
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 0.05em;
+}
+
+.btn-login {
+  background-color: transparent;
+  color: #f3b021;
+  border: 2px solid #f3b021;
+}
+
+.btn-login:hover {
+  background-color: #f3b021;
+  color: #123b2a;
+}
+
+.btn-register {
+  background-color: #f3b021;
+  color: #123b2a;
+}
+
+.btn-register:hover {
+  background-color: #ffbe2e;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(243, 176, 33, 0.4);
+}
+
+/* CONTENEDOR DEL MENÚ USUARIO */
+.user-menu-container {
+  position: relative;
+}
+
+/* BOTÓN USUARIO */
+.ug-user-btn {
+  border: none;
+  background-color: #f3b021;
+  color: #ffffff;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.ug-user-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.ug-user-btn i {
+  font-size: 1rem;
+}
+
+/* MENÚ DESPLEGABLE */
+.user-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  min-width: 180px;
+  overflow: hidden;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-item {
+  width: 100%;
+  padding: 12px 16px;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background-color 0.2s;
+}
+
+.dropdown-item:hover {
+  background-color: #f5f5f5;
+}
+
+.logout-item {
+  color: #c0392b;
+  font-weight: 600;
+}
+
+.logout-item:hover {
+  background-color: #ffebee;
+}
+
+.dropdown-item i {
+  font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .ug-navbar-inner {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .ug-nav-links {
+    width: 100%;
+    justify-content: center;
+    gap: 16px;
+    order: 3;
+    flex-wrap: wrap;
+  }
+
+  .auth-buttons,
+  .user-menu-container {
+    order: 2;
+  }
+
+  .auth-buttons {
+    gap: 8px;
+  }
+
+  .btn-login,
+  .btn-register {
+    padding: 6px 14px;
+    font-size: 0.8rem;
+  }
+}

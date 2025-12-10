@@ -1,0 +1,55 @@
+<header class="ug-navbar">
+  <div class="ug-navbar-inner">
+
+    <!-- LOGO -->
+    <div class="ug-logo" [routerLink]="['/home']" style="cursor: pointer;">
+      <span class="ug-logo-mark">U</span>
+      <span class="ug-logo-text">
+        <span class="ug-logo-main">UNCHAINED</span>
+        <span class="ug-logo-sub">GAMES</span>
+      </span>
+    </div>
+
+    <!-- MENÚ PRINCIPAL -->
+    <nav class="ug-nav-links">
+      <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        Catálogo
+      </a>
+      <a routerLink="/featured" routerLinkActive="active">
+        Destacado
+      </a>
+      <a routerLink="/reviews" routerLinkActive="active">
+        Reseñas
+      </a>
+      <a routerLink="/contact" routerLinkActive="active">
+        Contacto
+      </a>
+    </nav>
+
+    <!-- BOTONES DE AUTENTICACIÓN (cuando NO está logueado) -->
+    <div class="auth-buttons" *ngIf="!isLoggedIn">
+      <button class="btn-login" (click)="goToLogin()">
+        Iniciar Sesión
+      </button>
+      <button class="btn-register" (click)="goToRegister()">
+        Registrarse
+      </button>
+    </div>
+
+    <!-- ICONO USUARIO CON MENÚ (cuando SÍ está logueado) -->
+    <div class="user-menu-container" *ngIf="isLoggedIn">
+      <button class="ug-user-btn" type="button" (click)="toggleUserMenu()" title="Mi cuenta">
+        <i class="fa-solid fa-user"></i>
+      </button>
+
+      <!-- MENÚ DESPLEGABLE -->
+      <div class="user-dropdown" *ngIf="showUserMenu">
+        <button class="dropdown-item logout-item" (click)="onLogout()">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          Cerrar Sesión
+        </button>
+      </div>
+    </div>
+
+  </div>
+</header>
