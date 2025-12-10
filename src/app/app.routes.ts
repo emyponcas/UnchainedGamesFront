@@ -9,6 +9,7 @@ import { RegisterComponent } from './paginas/register/register';
 import { ReviewComponent } from './paginas/review/review';
 import { CartComponent } from './paginas/cart/cart';
 import { OrdersComponent } from './paginas/orders/orders';
+import {QuienesSomos} from './paginas/quienes-somos/quienes-somos';
 
 export const routes: Routes = [
   { path: '', component: ProductListComponent },
@@ -20,6 +21,8 @@ export const routes: Routes = [
   { path: 'orders', component: OrdersComponent },
 
   { path: 'cart', component: CartComponent },
+
+  {path: 'quienes-somos', component: QuienesSomos},
 
   { path: 'product/create', component: ProductFormComponent },
   { path: 'product/edit/:id', component: ProductFormComponent },

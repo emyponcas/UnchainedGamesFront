@@ -16,6 +16,43 @@
     </a>
   </div>
 
+  <!-- BARRA DE BÚSQUEDA / FILTROS -->
+  <div class="catalog-filters">
+
+    <div class="filter-group">
+      <label>Buscar juego</label>
+      <input
+        type="text"
+        [(ngModel)]="searchText"
+        placeholder="Ej: Catan"
+      />
+    </div>
+
+    <div class="filter-group">
+      <span>Idiomas</span>
+
+      <label *ngFor="let lang of availableLanguages">
+        <input
+          type="checkbox"
+          (change)="onLanguageChange($event, lang)"
+          [checked]="selectedLanguages.includes(lang)"
+        />
+        {{ lang }}
+      </label>
+    </div>
+
+    <div class="filter-actions">
+      <button type="button" class="btn-search" (click)="onSearchClick()">
+        Buscar
+      </button>
+
+      <button type="button" class="btn-clear" (click)="onClearFilters()">
+        Limpiar
+      </button>
+    </div>
+
+  </div>
+
   <!-- LISTA DE PRODUCTOS -->
   <div class="product-list">
 

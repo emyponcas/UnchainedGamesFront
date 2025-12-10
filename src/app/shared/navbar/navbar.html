@@ -23,6 +23,7 @@
       </a>
 
       <a
+        *ngIf="isLoggedIn"
         routerLink="/reviews"
         routerLinkActive="active"
       >
@@ -30,10 +31,10 @@
       </a>
 
       <a
-        routerLink="/contacto"
+        routerLink="/quienes-somos"
         routerLinkActive="active"
       >
-        CONTACTO
+        QUIENES SOMOS
       </a>
 
       <!-- Historial de pedidos solo si está logueado -->
