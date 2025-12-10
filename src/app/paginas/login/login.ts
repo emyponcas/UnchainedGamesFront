@@ -9,7 +9,8 @@ import { LoginRequest } from '../../models/login-request.model';
   selector: 'app-login',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './login.html'   // 👈 IMPORTANTE: coincide con el nombre real del archivo
+  templateUrl: './login.html',
+  styleUrl: 'login.css'
 })
 export class LoginComponent {
 
