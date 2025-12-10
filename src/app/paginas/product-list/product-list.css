@@ -164,6 +164,13 @@
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
 }
 
+.actions-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+
 /* Móvil: un pelín menos de padding lateral */
 @media (max-width: 639px) {
   :host {

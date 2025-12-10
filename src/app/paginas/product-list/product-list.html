@@ -1,54 +1,19 @@
 <div class="catalog-page">
 
-  <!-- CABECERA CATÁLOGO -->
-  <header class="section-header">
+  <!-- CABECERA -->
+  <div class="section-header">
     <h1 class="page-title">Catálogo</h1>
     <p class="page-subtitle">
-      Los favoritos de nuestra comunidad. Juegos probados y amados por miles de jugadores.
+      Descubre nuestra selección de juegos de mesa y añádelos a tu carrito.
     </p>
-  </header>
-
-  <!-- BOTÓN CREAR PRODUCTO -->
-  <div *ngIf="isAdmin"
-    class="create-wrapper">
-    <a routerLink="/product/create" class="btn-create">Crear producto</a>
   </div>
 
-  <!-- BARRA DE BÚSQUEDA / FILTROS -->
-  <div class="catalog-filters">
-
-    <div class="filter-group">
-      <label>Buscar juego</label>
-      <input
-        type="text"
-        [(ngModel)]="searchText"
-        placeholder="Ej: Catan"
-      />
-    </div>
-
-    <div class="filter-group">
-      <span>Idiomas</span>
-
-      <label *ngFor="let lang of availableLanguages">
-        <input
-          type="checkbox"
-          (change)="onLanguageChange($event, lang)"
-          [checked]="selectedLanguages.includes(lang)"
-        />
-        {{ lang }}
-      </label>
-    </div>
-
-    <div class="filter-actions">
-      <button type="button" class="btn-search" (click)="onSearchClick()">
-        Buscar
-      </button>
-
-      <button type="button" class="btn-clear" (click)="onClearFilters()">
-        Limpiar
-      </button>
-    </div>
-
+  <!-- BOTÓN CREAR PRODUCTO (SOLO ADMIN) -->
+  <div class="create-wrapper" *ngIf="isAdmin">
+    <a routerLink="/product/create" class="btn-create">
+      <i class="fa-solid fa-plus"></i>
+      Crear producto
+    </a>
   </div>
 
   <!-- LISTA DE PRODUCTOS -->
@@ -56,65 +21,78 @@
 
     <div class="product-card" *ngFor="let p of products">
 
-      <!-- Imagen del juego -->
+      <!-- IMAGEN -->
       <div class="product-image-wrapper">
-        <img
-          *ngIf="p.picture"
-          [src]="p.picture"
-          [alt]="p.name"
-          class="product-image"
-        />
+        <ng-container *ngIf="p.picture; else noImageTpl">
+          <img
+            class="product-image"
+            [src]="p.picture"
+            [alt]="p.name"
+          />
+        </ng-container>
+        <ng-template #noImageTpl>
+          <div class="product-image">
+            <span>Sin imagen</span>
+          </div>
+        </ng-template>
       </div>
 
-      <h3 class="product-name">{{ p.name }}</h3>
+      <!-- NOMBRE -->
+      <h3 class="product-name">
+        {{ p.name }}
+      </h3>
 
+      <!-- DESCRIPCIÓN -->
       <p class="product-description">
-        {{ p.description }}
+        {{ p.description || 'Este juego todavía no tiene descripción.' }}
       </p>
 
+      <!-- PRECIO / STOCK -->
       <p class="price">
-        {{ p.price }} €
+        {{ p.price | number:'1.2-2' }} €
       </p>
-
       <p class="stock">
         Stock: {{ p.stock }}
       </p>
 
+      <!-- ACCIONES -->
       <div class="actions">
-        <!-- Ver detalle -->
-        <a [routerLink]="['/product', p.id]" class="link-detail">
+
+        <!-- Ver detalle (siempre) -->
+        <a
+          [routerLink]="['/product', p.id]"
+          class="link-detail">
           Ver detalle
         </a>
 
-        <button
-          *ngIf="isLoggedIn"
-          class="btn-edit"
-          (click)="addToCart(p)"
-        >
-          <i class="fa-solid fa-cart-plus"></i>
-        </button>
+        <div class="actions-right">
 
+          <!-- Añadir al carrito (solo logueado) -->
+          <button
+            *ngIf="isLoggedIn"
+            type="button"
+            class="btn-edit"
+            (click)="addToCart(p)">
+            <i class="fa-solid fa-cart-plus" aria-hidden="true"></i>
+          </button>
 
-        <!-- Editar -->
-        <a
-          *ngIf="isAdmin"
-          class="btn-edit"
-          [routerLink]="['/product/edit', p.id]"
-        >
-          Editar
-        </a>
+          <!-- Editar (solo admin) -->
+          <a
+            *ngIf="isAdmin"
+            [routerLink]="['/product/edit', p.id]"
+            class="btn-edit">
+            <i class="fa-solid fa-pen-to-square" aria-hidden="true"></i>
+          </a>
 
-        <!-- Eliminar -->
-        <a
-          *ngIf="isAdmin"
-          class="btn-delete"
-          [routerLink]="['/product/delete', p.id]"
-        >
-          Eliminar
-        </a>
-
+          <!-- Eliminar (solo admin) -->
+          <a
+            *ngIf="isAdmin"
+            [routerLink]="['/product/delete', p.id]"
+            class="btn-delete">
+            <i class="fa-solid fa-trash" aria-hidden="true"></i>
+          </a>
+        </div>
       </div>
     </div>
   </div>
-
 </div>

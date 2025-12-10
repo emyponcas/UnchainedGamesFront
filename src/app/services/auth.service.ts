@@ -88,9 +88,22 @@ export class AuthService {
     return !!this.getToken();
   }
 
-  // Para product-list.ts (this.authService.isAdmin())
   isAdmin(): boolean {
-    const rol = localStorage.getItem('rol');
-    return rol === 'ADMIN';
+    const token = this.getToken();
+    if (!token) return false;
+
+    try {
+      const payloadBase64 = token.split('.')[1];
+      const payloadJson = atob(payloadBase64);
+      const payload = JSON.parse(payloadJson);
+
+      const datos = payload.datos;
+      // 👇 El backend mete "ADMIN" en el campo rol (lo vimos en el token)
+      return datos?.rol === 'ADMIN';
+    } catch (e) {
+      console.error('[AUTH] Error al leer rol del token', e);
+      return false;
+    }
   }
+
 }
