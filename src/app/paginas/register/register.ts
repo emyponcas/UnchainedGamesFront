@@ -67,7 +67,7 @@ export class RegisterComponent {
         // opcional: redirigir directamente al login
         this.router.navigate(['/login']);
       },
-      error: err => {
+      error: (err: any) => {
         console.error('Error al registrar usuario', err);
         this.loading = false;
         this.errorMessage = 'Error al registrar usuario. Revisa los datos o inténtalo más tarde.';

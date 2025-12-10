@@ -1,0 +1,87 @@
+<div class="reviews-page">
+  <!-- CABECERA -->
+  <div class="section-header">
+    <h1 class="page-title">Mis reseñas</h1>
+    <p class="page-subtitle">
+      Estos son los juegos que has valorado como usuario.
+    </p>
+  </div>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <ng-container *ngIf="reviews$ | async as reviews; else loadingTpl">
+
+    <p class="summary-text">
+      Has escrito <strong>{{ reviews.length }}</strong>
+      reseña{{ reviews.length === 1 ? '' : 's' }}.
+    </p>
+
+    <!-- ESTADO VACÍO -->
+    <div *ngIf="reviews.length === 0" class="empty-state">
+      <p>Aún no has reseñado ningún juego.</p>
+      <a routerLink="/" class="btn-primary-outline">
+        Ir al catálogo
+      </a>
+    </div>
+
+    <!-- LISTA DE RESEÑAS -->
+    <div *ngIf="reviews.length > 0" class="reviews-list">
+      <article class="review-card" *ngFor="let r of reviews">
+
+        <a class="card-main" [routerLink]="['/product', r.productId]">
+          <!-- MINIATURA DEL JUEGO -->
+          <div class="game-thumb">
+            <img
+              *ngIf="r.productPicture; else noImg"
+              [src]="r.productPicture!"
+              [alt]="r.productName"
+            />
+            <ng-template #noImg>
+              <div class="game-placeholder">
+                {{ r.productName ? (r.productName | slice:0:1) : '?' }}
+              </div>
+            </ng-template>
+          </div>
+
+          <!-- INFORMACIÓN DEL JUEGO + RESEÑA -->
+          <div class="game-info">
+            <h2 class="game-title">{{ r.productName }}</h2>
+
+            <div class="meta-row">
+              <span class="date">
+                {{ r.datetime | date:'dd/MM/yyyy' }}
+              </span>
+
+              <div class="rating">
+                <!-- Estrellas Font Awesome -->
+                <i
+                  *ngFor="let star of [1,2,3,4,5]"
+                  class="fa-star"
+                  [ngClass]="star <= r.score ? 'fa-solid filled' : 'fa-regular'"
+                  aria-hidden="true"
+                ></i>
+                <span class="rating-value">
+                  {{ r.score }}/5
+                </span>
+              </div>
+            </div>
+
+            <p class="author">
+              Reseña de {{ r.usuarioName }}
+            </p>
+
+            <p class="comment">
+              {{ r.description }}
+            </p>
+          </div>
+        </a>
+      </article>
+    </div>
+  </ng-container>
+
+  <!-- LOADING -->
+  <ng-template #loadingTpl>
+    <p class="loading-text">
+      Cargando reseñas...
+    </p>
+  </ng-template>
+</div>

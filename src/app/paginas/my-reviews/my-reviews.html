@@ -1,0 +1,42 @@
+<div class="my-reviews-page">
+  <h1>Mis reseñas</h1>
+
+  <!-- DEBUG: ver estado en la vista -->
+  <p><strong>isLoading:</strong> {{ isLoading }}</p>
+  <p><strong>error:</strong> {{ error || 'ninguno' }}</p>
+  <p><strong>nº reseñas:</strong> {{ reviews.length }}</p>
+
+  <hr />
+
+  <!-- Si hay error, lo mostramos en rojo -->
+  <p *ngIf="error" style="color: #ff5252;">
+    {{ error }}
+  </p>
+
+  <!-- Si no hay reseñas -->
+  <p *ngIf="!error && !isLoading && reviews.length === 0">
+    Todavía no has escrito ninguna reseña.
+  </p>
+
+  <!-- Lista de reseñas (SIN condiciones raras, solo el *ngFor) -->
+  <div class="reviews-grid">
+    <article class="review-card" *ngFor="let r of reviews">
+      <header class="review-header">
+        <h2 class="product-name">
+          {{ r.productName || 'Juego sin nombre' }}
+        </h2>
+
+        <div class="meta">
+          <span class="score">{{ r.score }}/5</span>
+          <span class="date">{{ r.datetime | date:'shortDate' }}</span>
+        </div>
+      </header>
+
+      <p class="author">Usuario ID: {{ r.usuarioId }} – {{ r.usuarioName }}</p>
+
+      <p class="description">
+        {{ r.description }}
+      </p>
+    </article>
+  </div>
+</div>

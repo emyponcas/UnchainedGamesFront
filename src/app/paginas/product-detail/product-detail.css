@@ -176,3 +176,161 @@
   font-size: 0.75rem;
   font-weight: 600;
 }
+
+/* === RESEÑAS: BOTÓN + FORMULARIO + LISTA === */
+
+/* Bloque del botón de reseñar / mensaje de login */
+.detail-info-panel .actions-block {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.detail-info-panel .btn-primary {
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: none;
+  background-color: #2f7c4c;
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.detail-info-panel .btn-primary:hover {
+  background-color: #25633c;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+}
+
+.detail-info-panel .btn-primary:disabled {
+  opacity: 0.7;
+  cursor: default;
+  box-shadow: none;
+}
+
+.detail-info-panel .info-login {
+  font-size: 0.85rem;
+  color: #777777;
+}
+
+/* Formulario de reseña dentro de la columna derecha */
+.detail-info-panel .review-form {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid #e3e3e3;
+  background-color: #f8f8f5;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.detail-info-panel .review-form h3 {
+  margin: 0 0 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2f7c4c;
+}
+
+.detail-info-panel .review-form label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #777777;
+}
+
+.detail-info-panel .review-form select,
+.detail-info-panel .review-form textarea {
+  font-family: inherit;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  border: 1px solid #d0d0d0;
+  padding: 6px 8px;
+  background-color: #ffffff;
+  outline: none;
+  resize: vertical;
+}
+
+.detail-info-panel .review-form select:focus,
+.detail-info-panel .review-form textarea:focus {
+  border-color: #2f7c4c;
+  box-shadow: 0 0 0 2px rgba(47, 124, 76, 0.15);
+}
+
+.detail-info-panel .review-form textarea {
+  min-height: 70px;
+}
+
+.detail-info-panel .review-form .error {
+  font-size: 0.8rem;
+  color: #c0392b;
+}
+
+.detail-info-panel .review-form .success {
+  font-size: 0.8rem;
+  color: #2f7c4c;
+}
+
+/* Sección de reseñas debajo de la tarjeta */
+.product-reviews-section {
+  margin-top: 24px;
+}
+
+.product-reviews-section h2 {
+  font-size: 1.1rem;
+  margin: 0 0 10px;
+  color: #2f7c4c;
+  font-weight: 600;
+}
+
+.product-reviews-section .review-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e3e3e3;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+}
+
+.product-reviews-section .review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.product-reviews-section .review-header .score {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #f39c1f;
+}
+
+.product-reviews-section .review-header .date {
+  font-size: 0.75rem;
+  color: #888888;
+}
+
+.product-reviews-section .review-card .author {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #2f7c4c;
+  margin: 0 0 4px;
+}
+
+.product-reviews-section .review-card .description {
+  font-size: 0.9rem;
+  color: #555555;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .detail-info-panel .actions-block {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+

@@ -1,85 +1,168 @@
-<div *ngIf="product as p" class="detail-page">
+<div class="detail-page">
 
-  <a routerLink="/" class="back-link">&larr; Volver al catálogo</a>
+  <!-- CONTENIDO PRINCIPAL DEL PRODUCTO -->
+  <ng-container *ngIf="product$ | async as p; else loadingTpl">
 
-  <div class="detail-card">
+    <a routerLink="/" class="back-link">&larr; Volver al catálogo</a>
 
-    <!-- COLUMNA IZQUIERDA: IMAGEN -->
-    <div class="detail-image-panel">
-      <div class="detail-image-wrapper" *ngIf="p.picture; else noImage">
-        <img
-          [src]="p.picture"
-          [alt]="p.name"
-          class="detail-image"
-        />
+    <div class="detail-card">
+
+      <!-- COLUMNA IZQUIERDA: IMAGEN -->
+      <div class="detail-image-panel">
+        <div class="detail-image-wrapper" *ngIf="p.picture; else noImage">
+          <img
+            [src]="p.picture"
+            [alt]="p.name"
+            class="detail-image"
+          />
+        </div>
+
+        <ng-template #noImage>
+          <div class="detail-image-placeholder">
+            <span>Sin imagen</span>
+          </div>
+        </ng-template>
       </div>
 
-      <ng-template #noImage>
-        <div class="detail-image-placeholder">
-          <span>Sin imagen</span>
+      <!-- COLUMNA DERECHA: INFO -->
+      <div class="detail-info-panel">
+
+        <h1 class="product-title">{{ p.name }}</h1>
+
+        <p class="product-description">
+          {{ p.description || 'Este producto todavía no tiene descripción detallada.' }}
+        </p>
+
+        <p class="price">
+          {{ p.price }} €
+        </p>
+
+        <div class="meta-grid">
+          <div class="meta-item">
+            <span class="meta-label">Stock</span>
+            <span class="meta-value">{{ p.stock }}</span>
+          </div>
+
+          <div class="meta-item">
+            <span class="meta-label">Jugadores</span>
+            <span class="meta-value">{{ p.playerMin }} - {{ p.playerMax }}</span>
+          </div>
+
+          <div class="meta-item">
+            <span class="meta-label">Duración</span>
+            <span class="meta-value">{{ p.duration }} min</span>
+          </div>
+
+          <div class="meta-item">
+            <span class="meta-label">Edad recomendada</span>
+            <span class="meta-value">{{ p.recommendedAge }}</span>
+          </div>
+
+          <div class="meta-item">
+            <span class="meta-label">Tamaño de la caja</span>
+            <span class="meta-value">{{ p.boxSize || 'N/D' }}</span>
+          </div>
+
+          <div class="meta-item">
+            <span class="meta-label">Dificultad</span>
+            <span class="meta-value">{{ p.difficulty || 'N/D' }}</span>
+          </div>
         </div>
-      </ng-template>
+
+        <!-- Idiomas -->
+        <div class="languages-block" *ngIf="p.languages && p.languages.length">
+          <span class="meta-label">Idiomas</span>
+          <div class="language-chips">
+            <span
+              class="language-chip"
+              *ngFor="let lang of p.languages"
+            >
+              {{ lang.name || lang }}
+            </span>
+          </div>
+        </div>
+
+        <!-- BOTÓN RESEÑAR / MENSAJE LOGIN -->
+        <div class="actions-block">
+          <button
+            class="btn-primary"
+            *ngIf="isLoggedIn"
+            (click)="toggleReviewForm()">
+            {{ showReviewForm ? 'Cancelar reseña' : 'Reseñar este juego' }}
+          </button>
+
+          <p *ngIf="!isLoggedIn" class="info-login">
+            Inicia sesión para poder reseñar este juego.
+          </p>
+        </div>
+
+        <!-- FORMULARIO DE RESEÑA -->
+        <div class="review-form" *ngIf="showReviewForm">
+          <h3>Escribir reseña</h3>
+
+          <label for="score">Puntuación</label>
+          <select
+            id="score"
+            [(ngModel)]="newReviewScore"
+            name="score">
+            <option [ngValue]="null" disabled>Selecciona...</option>
+            <option *ngFor="let s of [1,2,3,4,5]" [ngValue]="s">
+              {{ s }}
+            </option>
+          </select>
+
+          <label for="description">Comentario</label>
+          <textarea
+            id="description"
+            [(ngModel)]="newReviewDescription"
+            name="description"
+            rows="3">
+          </textarea>
+
+          <button
+            class="btn-primary"
+            (click)="enviarReview()"
+            [disabled]="submittingReview">
+            {{ submittingReview ? 'Enviando...' : 'Enviar reseña' }}
+          </button>
+
+          <p class="error" *ngIf="reviewFormError">
+            {{ reviewFormError }}
+          </p>
+          <p class="success" *ngIf="reviewFormSuccess">
+            {{ reviewFormSuccess }}
+          </p>
+        </div>
+
+      </div>
     </div>
 
-    <!-- COLUMNA DERECHA: INFO -->
-    <div class="detail-info-panel">
+    <!-- LISTADO DE RESEÑAS DEL PRODUCTO -->
+    <div class="product-reviews-section">
+      <h2>Reseñas del juego</h2>
 
-      <h1 class="product-title">{{ p.name }}</h1>
-
-      <p class="product-description">
-        {{ p.description || 'Este producto todavía no tiene descripción detallada.' }}
-      </p>
-
-      <p class="price">
-        {{ p.price }} €
-      </p>
-
-      <div class="meta-grid">
-        <div class="meta-item">
-          <span class="meta-label">Stock</span>
-          <span class="meta-value">{{ p.stock }}</span>
+      <ng-container *ngIf="reviews$ | async as reviews">
+        <div *ngIf="reviews.length === 0">
+          Todavía no hay reseñas para este juego.
         </div>
 
-        <div class="meta-item">
-          <span class="meta-label">Jugadores</span>
-          <span class="meta-value">{{ p.playerMin }} - {{ p.playerMax }}</span>
+        <div *ngIf="reviews.length > 0">
+          <div class="review-card" *ngFor="let r of reviews">
+            <div class="review-header">
+              <span class="score">{{ r.score }}/5</span>
+              <span class="date">{{ r.datetime | date:'shortDate' }}</span>
+            </div>
+            <p class="author">{{ r.usuarioName }}</p>
+            <p class="description">{{ r.description }}</p>
+          </div>
         </div>
-
-        <div class="meta-item">
-          <span class="meta-label">Duración</span>
-          <span class="meta-value">{{ p.duration }} min</span>
-        </div>
-
-        <div class="meta-item">
-          <span class="meta-label">Edad recomendada</span>
-          <span class="meta-value">{{ p.recommendedAge }}</span>
-        </div>
-
-        <div class="meta-item">
-          <span class="meta-label">Tamaño de la caja</span>
-          <span class="meta-value">{{ p.boxSize || 'N/D' }}</span>
-        </div>
-
-        <div class="meta-item">
-          <span class="meta-label">Dificultad</span>
-          <span class="meta-value">{{ p.difficulty || 'N/D' }}</span>
-        </div>
-      </div>
-
-      <!-- Idiomas (si los tienes cargados en el producto) -->
-      <div class="languages-block" *ngIf="p.languages && p.languages.length">
-        <span class="meta-label">Idiomas</span>
-        <div class="language-chips">
-          <span
-            class="language-chip"
-            *ngFor="let lang of p.languages"
-          >
-            {{ lang.name || lang }}
-          </span>
-        </div>
-      </div>
-
+      </ng-container>
     </div>
-  </div>
 
+  </ng-container>
+
+  <!-- LOADING / SIN PRODUCTO -->
+  <ng-template #loadingTpl>
+    <p>Cargando producto...</p>
+  </ng-template>
 </div>
